@@ -1,0 +1,8 @@
+streamlit
+python-dotenv
+google-generativeai
+langchain
+langchain-community
+langchain-cohere
+faiss-cpu
+cohere

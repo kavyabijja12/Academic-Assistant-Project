@@ -1,0 +1,52 @@
+URL: https://poly.engineering.asu.edu/it/doctor-of-information-technology/
+Parent: https://poly.engineering.asu.edu/it/
+
+Doctor of Information Technology
+Information Technology
+Take the Next Step
+Apply Online
+About the Doctor in Information Technology
+2025–26 DIT Graduate Student Handbook
+ASU Degree Page
+Request More Information
+IFT 793 Applied Doctoral Project Request Form
+Advising
+Polytechnic School Advising
+Schedule an Appointment
+Academic Standards
+Graduate Student Resources
+Accelerated Master’s Degree Programs
+Academic calendar
+Graduate College Policies
+Resources and Forms
+Application Deadlines
+January 15 Fall semester (August)
+August 15 Spring semester (January)
+These are priority deadlines. Applications received after this date may still be considered but are not guaranteed to be evaluated for the semester of application.
+Program Contacts
+Graduate Advising: [[email protected]] or 480-727-1874
+Graduate Program Chair: Tatiana Walsh
+The Doctor of Information Technology (DIT) program is designed for innovative leaders who wish to advance their knowledge and skills in technology innovations which are key to leading and influencing organizations. The students will develop engineering skills and professional competencies of collaborations, communication, agility, and teamwork, to advance their leadership career.
+The DIT is tailored for the working professional and provides a multi-disciplinary approach that leverages multiple courses to build competencies that innovate reliable, effective, and secure communications networks, design and implement secure systems for both employees and customers; and leverage data models and architecture to support business decisions from data analytics. Students will utilize the leading technologies, including cloud computing, artificial intelligence, cybersecurity and data science to be prepared to work in large corporations, government agencies, and small businesses.
+IT program recommends the following specifications in laptop computer:
+CPU: Any modern (2015+) x64 capable quad core cpu or better
+RAM: 16GB RAM or more
+Disk Size: 512GB of available fast storage (eg. ssd) or more
+MacBook is not recommended
+Degree requirements
+The Doctor in Information Technology requires the following: 60 credit hours and the required applied project course (IFT 793). Students with a completed graduate degree in a related field may receive up to 15 credits of blanket coursework to apply towards the doctoral degree requirements. See the DIT Graduate Student Handbook linked on the left-hand side for more information.
+Applicants must meet the following admission requirements:
+A master’s degree in information technology, information sciences, cybersecurity, computer science, computer systems engineering, computer engineering, software engineering, or a related field.
+Minimum of 3.00 cumulative GPA (scale is 4.00=A) in their first bachelor’s degree program, or in the last 60 hours of a student’s first bachelor’s degree program.
+Minimum of 3.00 cumulative GPA (scale is 4.00=A) in a minimum of nine semester hours of graduate work from a U.S institution; or a cumulative GPA of 3.00 (scale is 4.00=A) from an applicable conferred master’s degree program in a regionally accredited college or university.
+An online Graduate Admission application.
+Official transcripts from undergraduate and graduate programs. Applicants may upload legible unofficial transcripts as part of the online application; if admitted official transcripts are then required.
+Two (2) letters of recommendation.
+Submit a current resume or CV and letter of intent as part of the online admissions application.
+International applicants must also meet the English proficiency requirements , as defined by Graduate Admissions. Please be sure to review the TOEFL, IELTS, or PTE score requirements , as your application will not be processed without valid proof of English proficiency.
+Tuition information
+When it comes to paying for higher education, everyone’s situation is different. Students can learn about ASU tuition and financial aid options to find out which will work best for them.
+Career opportunities
+Graduates will receive the necessary skills to aspire to senior IT leadership positions in multiple industries ranging from corporations and government to industrial research centers.
+STEM-designated
+STEM designation makes students within the program at ASU eligible for STEM specific Scholarships, OPT extension for International Students, and expanded GI benefits for Student Veterans.
