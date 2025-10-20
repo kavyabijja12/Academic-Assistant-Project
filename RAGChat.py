@@ -27,6 +27,17 @@ class RAGChat:
         self.retriever = None
         self.model_name = "models/gemini-2.5-flash"
         self.model = genai.GenerativeModel(self.model_name)
+        # Cache for common responses
+        self.response_cache = {}
+        # Common questions that will be cached after first use
+        self.common_questions = [
+            "what are the core it courses?",
+            "what are the graduation requirements for it program?",
+            "which location of asu it course is based on?",
+            "what is the it program about?",
+            "how do i apply for it program?",
+            "what are the admission requirements?"
+        ]
 
     def load_index(self):
         """Load FAISS index and create Hybrid Retriever."""
@@ -41,9 +52,24 @@ class RAGChat:
             # Get all text data
             texts = [d.page_content for d in self.db.docstore._dict.values()]
 
-            # BM25 retriever (keyword-based)
-            bm25 = BM25Retriever.from_texts(texts)
-            bm25.k = 10  # Increased from 5
+            # Cache BM25 index to avoid recreation (MAJOR PERFORMANCE FIX)
+            bm25_cache_path = "vector_store/bm25_cache.pkl"
+            import pickle
+            
+            if os.path.exists(bm25_cache_path):
+                print("📦 Loading cached BM25 index...")
+                with open(bm25_cache_path, 'rb') as f:
+                    bm25 = pickle.load(f)
+            else:
+                print("🔨 Building BM25 index (this may take a moment)...")
+                bm25 = BM25Retriever.from_texts(texts)
+                # Cache the built index
+                os.makedirs(os.path.dirname(bm25_cache_path), exist_ok=True)
+                with open(bm25_cache_path, 'wb') as f:
+                    pickle.dump(bm25, f)
+                print("💾 BM25 index cached for future use")
+            
+            bm25.k = 10
 
             # FAISS retriever (semantic)
             faiss_retriever = self.db.as_retriever(search_kwargs={"k": 10})  # Increased from 5
@@ -71,35 +97,37 @@ class RAGChat:
             return False
 
     def fallback_rerank(self, query, docs):
-        """Improved fallback reranker using semantic similarity and keyword matching."""
+        """Fast fallback reranker using keyword matching."""
         def score(doc):
-            # Combine multiple scoring methods
+            # Simplified scoring for speed
             text = doc.page_content.lower()
             query_lower = query.lower()
             
-            # 1. Exact phrase matches (highest weight)
-            phrase_score = 0
-            for word in query_lower.split():
-                if word in text:
-                    phrase_score += 1
+            # Simple keyword count - much faster
+            query_words = query_lower.split()
+            matches = sum(1 for word in query_words if word in text)
             
-            # 2. Sequence similarity (medium weight)
-            seq_score = SequenceMatcher(None, query_lower, text).ratio()
+            # Bonus for exact phrase matches
+            if query_lower in text:
+                matches += len(query_words)
             
-            # 3. Keyword density (lower weight)
-            keyword_score = sum(1 for word in query_lower.split() if word in text) / len(query_lower.split())
-            
-            # Weighted combination
-            return (phrase_score * 0.5) + (seq_score * 0.3) + (keyword_score * 0.2)
+            return matches
         
         return sorted(docs, key=score, reverse=True)
 
-    def ask(self, query, k=6):
+    def ask(self, query, k=4):  # Reduced from 6 to 4 for faster processing
         """Run hybrid retrieval + rerank + Gemini generation."""
         if not self.retriever:
             raise RuntimeError("Retriever not loaded. Call load_index() first.")
 
-        query = query.strip()
+        query = query.strip().lower()
+        
+        # Check cache for common questions (SAFE OPTIMIZATION)
+        cache_key = query
+        if cache_key in self.response_cache:
+            print("🚀 Using cached response")
+            return self.response_cache[cache_key]
+        
         docs = self.retriever.invoke(query)
 
         # Fallback rerank if Cohere not used
@@ -132,7 +160,11 @@ You are an expert academic advisor for Arizona State University's Polytechnic Sc
 
 **Academic Advisor Response:**"""
         response = self.model.generate_content(prompt)
-        return response.text, docs
+        result = (response.text, docs)
+        
+        # Cache the response for future use (SAFE OPTIMIZATION)
+        self.response_cache[cache_key] = result
+        return result
 
     def get_info(self):
         """Return status for sidebar."""
