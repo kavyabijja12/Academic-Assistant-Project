@@ -43,10 +43,10 @@ class RAGChat:
 
             # BM25 retriever (keyword-based)
             bm25 = BM25Retriever.from_texts(texts)
-            bm25.k = 5
+            bm25.k = 10  # Increased from 5
 
             # FAISS retriever (semantic)
-            faiss_retriever = self.db.as_retriever(search_kwargs={"k": 5})
+            faiss_retriever = self.db.as_retriever(search_kwargs={"k": 10})  # Increased from 5
 
             # Hybrid Retriever
             hybrid_retriever = EnsembleRetriever(
@@ -70,38 +70,67 @@ class RAGChat:
             print(f"⚠️ Failed to load index: {e}")
             return False
 
-    @staticmethod
-    def fallback_rerank(query, docs):
-        """Fallback reranker using textual overlap."""
+    def fallback_rerank(self, query, docs):
+        """Improved fallback reranker using semantic similarity and keyword matching."""
         def score(doc):
-            return SequenceMatcher(None, query.lower(), doc.page_content.lower()).ratio()
+            # Combine multiple scoring methods
+            text = doc.page_content.lower()
+            query_lower = query.lower()
+            
+            # 1. Exact phrase matches (highest weight)
+            phrase_score = 0
+            for word in query_lower.split():
+                if word in text:
+                    phrase_score += 1
+            
+            # 2. Sequence similarity (medium weight)
+            seq_score = SequenceMatcher(None, query_lower, text).ratio()
+            
+            # 3. Keyword density (lower weight)
+            keyword_score = sum(1 for word in query_lower.split() if word in text) / len(query_lower.split())
+            
+            # Weighted combination
+            return (phrase_score * 0.5) + (seq_score * 0.3) + (keyword_score * 0.2)
+        
         return sorted(docs, key=score, reverse=True)
 
-    def ask(self, query, k=4):
+    def ask(self, query, k=6):
         """Run hybrid retrieval + rerank + Gemini generation."""
         if not self.retriever:
             raise RuntimeError("Retriever not loaded. Call load_index() first.")
 
         query = query.strip()
-        docs = self.retriever.get_relevant_documents(query)
+        docs = self.retriever.invoke(query)
 
         # Fallback rerank if Cohere not used
         if not self.use_cohere:
             docs = self.fallback_rerank(query, docs)[:k]
 
         context = "\n\n".join(d.page_content for d in docs)
+        sources = [f"Source {i+1}: {doc.metadata.get('source', 'Unknown')}" for i, doc in enumerate(docs)]
+        
         prompt = f"""
-You are an academic advising assistant for Arizona State University’s Polytechnic School (Information Technology program).
-Use the provided context to answer precisely. If uncertain, reply "I couldn’t find that in the current ASU IT materials."
+You are an expert academic advisor for Arizona State University's Polytechnic School, specifically for the Information Technology program. Your role is to provide accurate, comprehensive, and helpful information to students about IT programs, courses, requirements, and resources.
 
-Context:
+**Instructions:**
+1. Answer the question using ONLY the provided context from ASU IT materials
+2. Be specific and detailed when information is available
+3. If asking about courses, include course codes, credits, and descriptions when available
+4. If asking about requirements, provide specific details about prerequisites, GPA requirements, etc.
+5. If asking about locations, specify campus locations and delivery methods (on-campus, online, hybrid)
+6. Format your response clearly with bullet points or numbered lists when appropriate
+7. If the information is not available in the context, clearly state "I couldn't find specific information about [topic] in the current ASU IT materials"
+8. Always be helpful and encourage students to contact advisors for additional information
+
+**Context from ASU IT Materials:**
 {context}
 
-Question:
-{query}
+**Available Sources:**
+{chr(10).join(sources)}
 
-Answer:
-"""
+**Student Question:** {query}
+
+**Academic Advisor Response:**"""
         response = self.model.generate_content(prompt)
         return response.text, docs
 
