@@ -1,1 +1,262 @@
-FACULTY PROFILE: https://search. [email protected] Mail code: 2180 Campus: Poly ‌ Courses 2026 Spring Course Number Course Title IFT 310 Info Systems Project Dev IFT 310 Info Systems Project Dev IFT 540 Info Systems Development IFT 310 Info Systems Project Dev IFT 540 Info Systems Development 2025 Fall Course Number Course Title IFT 540 Info Systems Development IFT 540 Info Systems Development IFT 310 Info Systems Project Dev IFT 310 Info Systems Project Dev IFT 310 Info Systems Project Dev IFT 603 Tech Strat Leadership & Ethics 2025 Spring Course Number Course Title IFT 310 Info Systems Project Dev IFT 540 Info Systems Development IFT 540 Info Systems Development 2024 Fall Course Number Course Title IFT 540 Info Systems Development IFT 310 Info Systems Project Dev IFT 540 Info Systems Development IFT 603 Tech Strat Leadership & Ethics 2024 Spring Course Number Course Title IFT 310 Info Systems Project Dev IFT 540 Info Systems Development IFT 540 Info Systems Development IFT 593 Applied Project 2023 Fall Course Number Course Title IFT 540 Info Systems Development IFT 540 Info Systems Development IFT 310 Info Systems Project Dev IFT 540 Info Systems Development IFT 540 Info Systems Development IFT 540 Info Systems Development 2023 Summer Course Number Course Title IFT 310 Info Systems Project Dev IFT 310 Info Systems Project Dev 2023 Spring Course Number Course Title IFT 310 Info Systems Project Dev IFT 540 Info Systems Development IFT 540 Info Systems Development 2022 Fall Course Number Course Title IFT 540 Info Systems Development IFT 310 Info Systems Project Dev IFT 540 Info Systems Development IFT 540 Info Systems Development 2022 Spring Course Number Course Title IFT 310 Info Systems Project Dev IFT 310 Info Systems Project Dev Derex Griffin Assistant Teaching Professor , Information Technology, The Polytechnic School [email protected] Mail code: 2180 Campus: Poly ‌ Assistant Teaching Professor , Information Technology, The Polytechnic School Information Technology, The Polytechnic School Courses 2026 Spring Course Number Course Title IFT 310 Info Systems Project Dev IFT 310 Info Systems Project Dev IFT 540 Info Systems Development IFT 310 Info Systems Project Dev IFT 540 Info Systems Development 2025 Fall Course Number Course Title IFT 540 Info Systems Development IFT 540 Info Systems Development IFT 310 Info Systems Project Dev IFT 310 Info Systems Project Dev IFT 310 Info Systems Project Dev IFT 603 Tech Strat Leadership & Ethics 2025 Spring Course Number Course Title IFT 310 Info Systems Project Dev IFT 540 Info Systems Development IFT 540 Info Systems Development 2024 Fall Course Number Course Title IFT 540 Info Systems Development IFT 310 Info Systems Project Dev IFT 540 Info Systems Development IFT 603 Tech Strat Leadership & Ethics 2024 Spring Course Number Course Title IFT 310 Info Systems Project Dev IFT 540 Info Systems Development IFT 540 Info Systems Development IFT 593 Applied Project 2023 Fall Course Number Course Title IFT 540 Info Systems Development IFT 540 Info Systems Development IFT 310 Info Systems Project Dev IFT 540 Info Systems Development IFT 540 Info Systems Development IFT 540 Info Systems Development 2023 Summer Course Number Course Title IFT 310 Info Systems Project Dev IFT 310 Info Systems Project Dev 2023 Spring Course Number Course Title IFT 310 Info Systems Project Dev IFT 540 Info Systems Development IFT 540 Info Systems Development 2022 Fall Course Number Course Title IFT 540 Info Systems Development IFT 310 Info Systems Project Dev IFT 540 Info Systems Development IFT 540 Info Systems Development 2022 Spring Course Number Course Title IFT 310 Info Systems Project Dev IFT 310 Info Systems Project Dev === COURSES === Term: Spring 2026 URL: https://catalog.apps.asu.edu/catalog/classes/classlist?searchType=all&collapse=Y&keywords=18461&term=2261 Course: IFT 310 Title: Information Systems Project Development Number: 18461 Instructor: Derex Griffin Dates: 1/12 - 5/1 (C) Units: 3 Seats: 58 of 58 Course Description: Intense review of information technology organizational management; project development for IT infrastructure, management and security systems. Enrollment Requirements: Pre- or corequisite(s) with C or better if completed: IFT 200; IFT 202 or 394 (Introduction to Cyber Security); IFT 250; IFT 266 or 394 (Networking Characteristics & Protocols) OR Visiting University Student Consent: No consent required for this class. Course Notes: None Fees: None Instructor(s): Derex Griffin Offered By: Ira A. Fulton Schools of Engineering Units 3 Repeatable for credit No Component Integrated Lecture/Lab Last day to enroll January 18, 2026 Drop deadline January 25, 2026 Course withdrawal deadline April 05, 2026 Copy Class Link Repeatable for credit: No Component: Integrated Lecture/Lab Last day to enroll: January 18, 2026 Drop deadline: January 25, 2026 Course withdrawal deadline: April 05, 2026 Term: Spring 2026 URL: https://catalog.apps.asu.edu/catalog/classes/classlist?searchType=all&collapse=Y&keywords=19449&term=2261 Course: IFT 310 Title: Information Systems Project Development Number: 19449 Instructor: Derex Griffin Location: ASU Online Dates: 3/16 - 5/1 (B) Units: 3 Seats: 51 of 90 Course Description: Intense review of information technology organizational management; project development for IT infrastructure, management and security systems. Enrollment Requirements: Pre- or corequisite(s) with C or better if completed: IFT 200; IFT 202 or 394 (Introduction to Cyber Security); IFT 250; IFT 266 or 394 (Networking Characteristics & Protocols) OR Visiting University Student Consent: No consent required for this class. Course Notes: None Fees: None Instructor(s): Derex Griffin Offered By: Ira A. Fulton Schools of Engineering Units 3 Repeatable for credit No Component Integrated Lecture/Lab Last day to enroll March 17, 2026 Drop deadline March 22, 2026 Course withdrawal deadline April 03, 2026 Copy Class Link Repeatable for credit: No Component: Integrated Lecture/Lab Last day to enroll: March 17, 2026 Drop deadline: March 22, 2026 Course withdrawal deadline: April 03, 2026 Term: Spring 2026 URL: https://catalog.apps.asu.edu/catalog/classes/classlist?searchType=all&collapse=Y&keywords=19891&term=2261 Course: IFT 540 Title: Information Systems Development Number: 19891 Instructor: Derex Griffin Location: ASU Online Dates: 1/12 - 5/1 (C) Units: 3 Seats: 56 of 75 Course Description: Proven techniques and methodologies for modeling information requirements and organizational data resources with a strong focus on gleaning information from data. Students learn how to discover, document and structure functional system requirements and user interface requirements at a level appropriate for advanced information technology practitioner, and develop conceptual data models. Covers the phases of a generic systems development life cycle (SDLC), object-oriented analysis and design (OOAD) with UML modeling, and Agile methodologies. Enrollment Requirements: Prerequisite(s): degree- or nondegree-seeking graduate student Consent: No consent required for this class. Course Notes: None Fees: None Instructor(s): Derex Griffin Offered By: Ira A. Fulton Schools of Engineering Units 3 Repeatable for credit No Component Lecture Last day to enroll January 18, 2026 Drop deadline January 25, 2026 Course withdrawal deadline April 05, 2026 Copy Class Link Repeatable for credit: No Component: Lecture Last day to enroll: January 18, 2026 Drop deadline: January 25, 2026 Course withdrawal deadline: April 05, 2026 Term: Spring 2026 URL: https://catalog.apps.asu.edu/catalog/classes/classlist?searchType=all&collapse=Y&keywords=21265&term=2261 Course: IFT 310 Title: Information Systems Project Development Number: 21265 Instructor: Derex Griffin Location: ASU Online Dates: 1/12 - 3/3 (A) Units: 3 Seats: 32 of 75 Course Description: Intense review of information technology organizational management; project development for IT infrastructure, management and security systems. Enrollment Requirements: Pre- or corequisite(s) with C or better if completed: IFT 200; IFT 202 or 394 (Introduction to Cyber Security); IFT 250; IFT 266 or 394 (Networking Characteristics & Protocols) OR Visiting University Student Consent: No consent required for this class. Course Notes: None Fees: None Instructor(s): Derex Griffin Offered By: Ira A. Fulton Schools of Engineering Units 3 Repeatable for credit No Component Integrated Lecture/Lab Last day to enroll January 13, 2026 Drop deadline January 18, 2026 Course withdrawal deadline January 30, 2026 Copy Class Link Repeatable for credit: No Component: Integrated Lecture/Lab Last day to enroll: January 13, 2026 Drop deadline: January 18, 2026 Course withdrawal deadline: January 30, 2026 Term: Spring 2026 URL: https://catalog.apps.asu.edu/catalog/classes/classlist?searchType=all&collapse=Y&keywords=36346&term=2261 Course: IFT 540 Title: Information Systems Development Number: 36346 Instructor: Derex Griffin Dates: 1/12 - 5/1 (C) Units: 3 Seats: 108 of 108 Course Description: Proven techniques and methodologies for modeling information requirements and organizational data resources with a strong focus on gleaning information from data. Students learn how to discover, document and structure functional system requirements and user interface requirements at a level appropriate for advanced information technology practitioner, and develop conceptual data models. Covers the phases of a generic systems development life cycle (SDLC), object-oriented analysis and design (OOAD) with UML modeling, and Agile methodologies. Enrollment Requirements: Prerequisite(s): degree- or nondegree-seeking graduate student Consent: No consent required for this class. Course Notes: None Fees: None Instructor(s): Derex Griffin Offered By: Ira A. Fulton Schools of Engineering Units 3 Repeatable for credit No Component Lecture Last day to enroll January 18, 2026 Drop deadline January 25, 2026 Course withdrawal deadline April 05, 2026 Copy Class Link Repeatable for credit: No Component: Lecture Last day to enroll: January 18, 2026 Drop deadline: January 25, 2026 Course withdrawal deadline: April 05, 2026 Term: Fall 2025 URL: https://catalog.apps.asu.edu/catalog/classes/classlist?searchType=all&collapse=Y&keywords=68381&term=2257 Course: IFT 540 Title: Information Systems Development Number: 68381 Instructor: Derex Griffin Dates: 8/21 - 12/5 (C) Units: 3 Seats: 75 of 108 Course Description: Proven techniques and methodologies for modeling information requirements and organizational data resources with a strong focus on gleaning information from data. Students learn how to discover, document and structure functional system requirements and user interface requirements at a level appropriate for advanced information technology practitioner, and develop conceptual data models. Covers the phases of a generic systems development life cycle (SDLC), object-oriented analysis and design (OOAD) with UML modeling, and Agile methodologies. Enrollment Requirements: Prerequisite(s): degree- or nondegree-seeking graduate student Consent: No consent required for this class. Course Notes: None Fees: None Instructor(s): Derex Griffin Offered By: Ira A. Fulton Schools of Engineering Units 3 Repeatable for credit No Component Lecture Last day to enroll August 27, 2025 Drop deadline September 03, 2025 Course withdrawal deadline November 05, 2025 Copy Class Link Repeatable for credit: No Component: Lecture Last day to enroll: August 27, 2025 Drop deadline: September 03, 2025 Course withdrawal deadline: November 05, 2025 Term: Fall 2025 URL: https://catalog.apps.asu.edu/catalog/classes/classlist?searchType=all&collapse=Y&keywords=68382&term=2257 Course: IFT 540 Title: Information Systems Development Number: 68382 Instructor: Derex Griffin Location: ASU Online Dates: 8/21 - 12/5 (C) Units: 3 Seats: 38 of 60 Course Description: Proven techniques and methodologies for modeling information requirements and organizational data resources with a strong focus on gleaning information from data. Students learn how to discover, document and structure functional system requirements and user interface requirements at a level appropriate for advanced information technology practitioner, and develop conceptual data models. Covers the phases of a generic systems development life cycle (SDLC), object-oriented analysis and design (OOAD) with UML modeling, and Agile methodologies. Enrollment Requirements: Prerequisite(s): degree- or nondegree-seeking graduate student Consent: No consent required for this class. Course Notes: None Fees: None Instructor(s): Derex Griffin Offered By: Ira A. Fulton Schools of Engineering Units 3 Repeatable for credit No Component Lecture Last day to enroll August 27, 2025 Drop deadline September 03, 2025 Course withdrawal deadline November 05, 2025 Copy Class Link Repeatable for credit: No Component: Lecture Last day to enroll: August 27, 2025 Drop deadline: September 03, 2025 Course withdrawal deadline: November 05, 2025 Term: Fall 2025 URL: https://catalog.apps.asu.edu/catalog/classes/classlist?searchType=all&collapse=Y&keywords=69844&term=2257 Course: IFT 310 Title: Information Systems Project Development Number: 69844 Instructor: Derex Griffin Location: ASU Online Dates: 8/21 - 10/10 (A) Units: 3 Seats: 23 of 100 Course Description: Intense review of information technology organizational management; project development for IT infrastructure, management and security systems. Enrollment Requirements: Pre- or corequisite(s) with C or better if completed: IFT 200; IFT 202 or 394 (Introduction to Cyber Security); IFT 250; IFT 266 or 394 (Networking Characteristics & Protocols) OR Visiting University Student Consent: No consent required for this class. Course Notes: None Fees: None Instructor(s): Derex Griffin Offered By: Ira A. Fulton Schools of Engineering Units 3 Repeatable for credit No Component Integrated Lecture/Lab Last day to enroll August 22, 2025 Drop deadline August 27, 2025 Course withdrawal deadline September 10, 2025 Copy Class Link Repeatable for credit: No Component: Integrated Lecture/Lab Last day to enroll: August 22, 2025 Drop deadline: August 27, 2025 Course withdrawal deadline: September 10, 2025 Term: Fall 2025 URL: https://catalog.apps.asu.edu/catalog/classes/classlist?searchType=all&collapse=Y&keywords=69845&term=2257 Course: IFT 310 Title: Information Systems Project Development Number: 69845 Instructor: Derex Griffin Dates: 8/21 - 12/5 (C) Units: 3 Seats: 24 of 58 Course Description: Intense review of information technology organizational management; project development for IT infrastructure, management and security systems. Enrollment Requirements: Pre- or corequisite(s) with C or better if completed: IFT 200; IFT 202 or 394 (Introduction to Cyber Security); IFT 250; IFT 266 or 394 (Networking Characteristics & Protocols) OR Visiting University Student Consent: No consent required for this class. Course Notes: None Fees: None Instructor(s): Derex Griffin Offered By: Ira A. Fulton Schools of Engineering Units 3 Repeatable for credit No Component Integrated Lecture/Lab Last day to enroll August 27, 2025 Drop deadline September 03, 2025 Course withdrawal deadline November 05, 2025 Copy Class Link Repeatable for credit: No Component: Integrated Lecture/Lab Last day to enroll: August 27, 2025 Drop deadline: September 03, 2025 Course withdrawal deadline: November 05, 2025 Term: Fall 2025 URL: https://catalog.apps.asu.edu/catalog/classes/classlist?searchType=all&collapse=Y&keywords=71637&term=2257 Course: IFT 310 Title: Information Systems Project Development Number: 71637 Instructor: Derex Griffin Location: ASU Online Dates: 10/15 - 12/5 (B) Units: 3 Seats: 15 of 100 Course Description: Intense review of information technology organizational management; project development for IT infrastructure, management and security systems. Enrollment Requirements: Pre- or corequisite(s) with C or better if completed: IFT 200; IFT 202 or 394 (Introduction to Cyber Security); IFT 250; IFT 266 or 394 (Networking Characteristics & Protocols) OR Visiting University Student Consent: No consent required for this class. Course Notes: None Fees: None Instructor(s): Derex Griffin Offered By: Ira A. Fulton Schools of Engineering Units 3 Repeatable for credit No Component Integrated Lecture/Lab Last day to enroll October 16, 2025 Drop deadline October 21, 2025 Course withdrawal deadline November 04, 2025 Copy Class Link Repeatable for credit: No Component: Integrated Lecture/Lab Last day to enroll: October 16, 2025 Drop deadline: October 21, 2025 Course withdrawal deadline: November 04, 2025 Term: Fall 2025 URL: https://catalog.apps.asu.edu/catalog/classes/classlist?searchType=all&collapse=Y&keywords=82488&term=2257 Course: IFT 603 Title: Technology Strategic Leadership and Ethics Number: 82488 Instructor: Derex Griffin Dates: 8/21 - 12/5 (C) Units: 3 Seats: 27 of 32 Course Description: Highlights the actions and skills of distinguished strategic leaders from around the world who understand the complexity of challenging situations and have the foresight to make strategic decisions. As technology rapidly changes, strategic leaders must be capable to create competitive opportunities and prepare for ethical challenges not yet in focus. Covers key strategies and techniques to create customer value, to avoid ethical disaster, to motivate stakeholders and to identify the best solution which aligns with the company mission. Enrollment Requirements: Prerequisite(s): degree- or nondegree-seeking graduate student Consent: No consent required for this class. Course Notes: None Fees: None Instructor(s): Derex Griffin Offered By: Ira A. Fulton Schools of Engineering Units 3 Repeatable for credit No Component Lecture Last day to enroll August 27, 2025 Drop deadline September 03, 2025 Course withdrawal deadline November 05, 2025 Copy Class Link Repeatable for credit: No Component: Lecture Last day to enroll: August 27, 2025 Drop deadline: September 03, 2025 Course withdrawal deadline: November 05, 2025
+FACULTY PROFILE: https://search.asu.edu/profile/3978451
+
+Derex Griffin
+by Learning and Teaching Hub | Aug 23, 2022 | Assistant Teaching Professor , Information Technology
+Derex Griffin Assistant Teaching Professor Information technology
+Derex.Griffin@asu.edu
+
+Derex Griffin Assistant Teaching Professor , Information Technology, The Polytechnic School [email protected] Mail code: 2180 Campus: Poly ‌ Courses 2026 Spring Course Number Course Title IFT 310 Info Systems Project Dev IFT 310 Info Systems Project Dev IFT 540 Info Systems Development IFT 310 Info Systems Project Dev IFT 540 Info Systems Development 2025 Fall Course Number Course Title IFT 540 Info Systems Development IFT 540 Info Systems Development IFT 310 Info Systems Project Dev IFT 310 Info Systems Project Dev IFT 310 Info Systems Project Dev IFT 603 Tech Strat Leadership & Ethics 2025 Spring Course Number Course Title IFT 310 Info Systems Project Dev IFT 540 Info Systems Development IFT 540 Info Systems Development 2024 Fall Course Number Course Title IFT 540 Info Systems Development IFT 310 Info Systems Project Dev IFT 540 Info Systems Development IFT 603 Tech Strat Leadership & Ethics 2024 Spring Course Number Course Title IFT 310 Info Systems Project Dev IFT 540 Info Systems Development IFT 540 Info Systems Development IFT 593 Applied Project 2023 Fall Course Number Course Title IFT 540 Info Systems Development IFT 540 Info Systems Development IFT 310 Info Systems Project Dev IFT 540 Info Systems Development IFT 540 Info Systems Development IFT 540 Info Systems Development 2023 Summer Course Number Course Title IFT 310 Info Systems Project Dev IFT 310 Info Systems Project Dev 2023 Spring Course Number Course Title IFT 310 Info Systems Project Dev IFT 540 Info Systems Development IFT 540 Info Systems Development 2022 Fall Course Number Course Title IFT 540 Info Systems Development IFT 310 Info Systems Project Dev IFT 540 Info Systems Development IFT 540 Info Systems Development 2022 Spring Course Number Course Title IFT 310 Info Systems Project Dev IFT 310 Info Systems Project Dev
+Derex Griffin Assistant Teaching Professor , Information Technology, The Polytechnic School [email protected] Mail code: 2180 Campus: Poly ‌
+Assistant Teaching Professor , Information Technology, The Polytechnic School
+Information Technology, The Polytechnic School
+Courses 2026 Spring Course Number Course Title IFT 310 Info Systems Project Dev IFT 310 Info Systems Project Dev IFT 540 Info Systems Development IFT 310 Info Systems Project Dev IFT 540 Info Systems Development 2025 Fall Course Number Course Title IFT 540 Info Systems Development IFT 540 Info Systems Development IFT 310 Info Systems Project Dev IFT 310 Info Systems Project Dev IFT 310 Info Systems Project Dev IFT 603 Tech Strat Leadership & Ethics 2025 Spring Course Number Course Title IFT 310 Info Systems Project Dev IFT 540 Info Systems Development IFT 540 Info Systems Development 2024 Fall Course Number Course Title IFT 540 Info Systems Development IFT 310 Info Systems Project Dev IFT 540 Info Systems Development IFT 603 Tech Strat Leadership & Ethics 2024 Spring Course Number Course Title IFT 310 Info Systems Project Dev IFT 540 Info Systems Development IFT 540 Info Systems Development IFT 593 Applied Project 2023 Fall Course Number Course Title IFT 540 Info Systems Development IFT 540 Info Systems Development IFT 310 Info Systems Project Dev IFT 540 Info Systems Development IFT 540 Info Systems Development IFT 540 Info Systems Development 2023 Summer Course Number Course Title IFT 310 Info Systems Project Dev IFT 310 Info Systems Project Dev 2023 Spring Course Number Course Title IFT 310 Info Systems Project Dev IFT 540 Info Systems Development IFT 540 Info Systems Development 2022 Fall Course Number Course Title IFT 540 Info Systems Development IFT 310 Info Systems Project Dev IFT 540 Info Systems Development IFT 540 Info Systems Development 2022 Spring Course Number Course Title IFT 310 Info Systems Project Dev IFT 310 Info Systems Project Dev
+
+=== COURSES ===
+
+Term: Spring 2026
+URL: https://catalog.apps.asu.edu/catalog/classes/classlist?searchType=all&collapse=Y&keywords=18461&term=2261
+Course: IFT 310
+Title: Information Systems Project Development
+Number: 18461
+Instructor: Derex Griffin
+Dates: 1/12 - 5/1 (C)
+Units: 3
+Seats: 58 of 58
+Course Description: Intense review of information technology organizational management; project development for IT infrastructure, management and security systems.
+Enrollment Requirements: Pre- or corequisite(s) with C or better if completed: IFT 200; IFT 202 or 394 (Introduction to Cyber Security); IFT 250; IFT 266 or 394 (Networking Characteristics & Protocols) OR Visiting University Student
+Consent: No consent required for this class.
+Course Notes: None
+Fees: None
+Instructor(s): Derex Griffin
+Offered By: Ira A. Fulton Schools of Engineering Units 3 Repeatable for credit No Component Integrated Lecture/Lab Last day to enroll January 18, 2026 Drop deadline January 25, 2026 Course withdrawal deadline April 05, 2026 Copy Class Link
+Repeatable for credit: No
+Component: Integrated Lecture/Lab
+Last day to enroll: January 18, 2026
+Drop deadline: January 25, 2026
+Course withdrawal deadline: April 05, 2026
+
+Term: Spring 2026
+URL: https://catalog.apps.asu.edu/catalog/classes/classlist?searchType=all&collapse=Y&keywords=19449&term=2261
+Course: IFT 310
+Title: Information Systems Project Development
+Number: 19449
+Instructor: Derex Griffin
+Location: ASU Online
+Dates: 3/16 - 5/1 (B)
+Units: 3
+Seats: 51 of 90
+Course Description: Intense review of information technology organizational management; project development for IT infrastructure, management and security systems.
+Enrollment Requirements: Pre- or corequisite(s) with C or better if completed: IFT 200; IFT 202 or 394 (Introduction to Cyber Security); IFT 250; IFT 266 or 394 (Networking Characteristics & Protocols) OR Visiting University Student
+Consent: No consent required for this class.
+Course Notes: None
+Fees: None
+Instructor(s): Derex Griffin
+Offered By: Ira A. Fulton Schools of Engineering Units 3 Repeatable for credit No Component Integrated Lecture/Lab Last day to enroll March 17, 2026 Drop deadline March 22, 2026 Course withdrawal deadline April 03, 2026 Copy Class Link
+Repeatable for credit: No
+Component: Integrated Lecture/Lab
+Last day to enroll: March 17, 2026
+Drop deadline: March 22, 2026
+Course withdrawal deadline: April 03, 2026
+
+Term: Spring 2026
+URL: https://catalog.apps.asu.edu/catalog/classes/classlist?searchType=all&collapse=Y&keywords=19891&term=2261
+Course: IFT 540
+Title: Information Systems Development
+Number: 19891
+Instructor: Derex Griffin
+Location: ASU Online
+Dates: 1/12 - 5/1 (C)
+Units: 3
+Seats: 56 of 75
+Course Description: Proven techniques and methodologies for modeling information requirements and organizational data resources with a strong focus on gleaning information from data. Students learn how to discover, document and structure functional system requirements and user interface requirements at a level appropriate for advanced information technology practitioner, and develop conceptual data models. Covers the phases of a generic systems development life cycle (SDLC), object-oriented analysis and design (OOAD) with UML modeling, and Agile methodologies.
+Enrollment Requirements: Prerequisite(s): degree- or nondegree-seeking graduate student
+Consent: No consent required for this class.
+Course Notes: None
+Fees: None
+Instructor(s): Derex Griffin
+Offered By: Ira A. Fulton Schools of Engineering Units 3 Repeatable for credit No Component Lecture Last day to enroll January 18, 2026 Drop deadline January 25, 2026 Course withdrawal deadline April 05, 2026 Copy Class Link
+Repeatable for credit: No
+Component: Lecture
+Last day to enroll: January 18, 2026
+Drop deadline: January 25, 2026
+Course withdrawal deadline: April 05, 2026
+
+Term: Spring 2026
+URL: https://catalog.apps.asu.edu/catalog/classes/classlist?searchType=all&collapse=Y&keywords=21265&term=2261
+Course: IFT 310
+Title: Information Systems Project Development
+Number: 21265
+Instructor: Derex Griffin
+Location: ASU Online
+Dates: 1/12 - 3/3 (A)
+Units: 3
+Seats: 32 of 75
+Course Description: Intense review of information technology organizational management; project development for IT infrastructure, management and security systems.
+Enrollment Requirements: Pre- or corequisite(s) with C or better if completed: IFT 200; IFT 202 or 394 (Introduction to Cyber Security); IFT 250; IFT 266 or 394 (Networking Characteristics & Protocols) OR Visiting University Student
+Consent: No consent required for this class.
+Course Notes: None
+Fees: None
+Instructor(s): Derex Griffin
+Offered By: Ira A. Fulton Schools of Engineering Units 3 Repeatable for credit No Component Integrated Lecture/Lab Last day to enroll January 13, 2026 Drop deadline January 18, 2026 Course withdrawal deadline January 30, 2026 Copy Class Link
+Repeatable for credit: No
+Component: Integrated Lecture/Lab
+Last day to enroll: January 13, 2026
+Drop deadline: January 18, 2026
+Course withdrawal deadline: January 30, 2026
+
+Term: Spring 2026
+URL: https://catalog.apps.asu.edu/catalog/classes/classlist?searchType=all&collapse=Y&keywords=36346&term=2261
+Course: IFT 540
+Title: Information Systems Development
+Number: 36346
+Instructor: Derex Griffin
+Dates: 1/12 - 5/1 (C)
+Units: 3
+Seats: 108 of 108
+Course Description: Proven techniques and methodologies for modeling information requirements and organizational data resources with a strong focus on gleaning information from data. Students learn how to discover, document and structure functional system requirements and user interface requirements at a level appropriate for advanced information technology practitioner, and develop conceptual data models. Covers the phases of a generic systems development life cycle (SDLC), object-oriented analysis and design (OOAD) with UML modeling, and Agile methodologies.
+Enrollment Requirements: Prerequisite(s): degree- or nondegree-seeking graduate student
+Consent: No consent required for this class.
+Course Notes: None
+Fees: None
+Instructor(s): Derex Griffin
+Offered By: Ira A. Fulton Schools of Engineering Units 3 Repeatable for credit No Component Lecture Last day to enroll January 18, 2026 Drop deadline January 25, 2026 Course withdrawal deadline April 05, 2026 Copy Class Link
+Repeatable for credit: No
+Component: Lecture
+Last day to enroll: January 18, 2026
+Drop deadline: January 25, 2026
+Course withdrawal deadline: April 05, 2026
+
+Term: Fall 2025
+URL: https://catalog.apps.asu.edu/catalog/classes/classlist?searchType=all&collapse=Y&keywords=68381&term=2257
+Course: IFT 540
+Title: Information Systems Development
+Number: 68381
+Instructor: Derex Griffin
+Dates: 8/21 - 12/5 (C)
+Units: 3
+Seats: 75 of 108
+Course Description: Proven techniques and methodologies for modeling information requirements and organizational data resources with a strong focus on gleaning information from data. Students learn how to discover, document and structure functional system requirements and user interface requirements at a level appropriate for advanced information technology practitioner, and develop conceptual data models. Covers the phases of a generic systems development life cycle (SDLC), object-oriented analysis and design (OOAD) with UML modeling, and Agile methodologies.
+Enrollment Requirements: Prerequisite(s): degree- or nondegree-seeking graduate student
+Consent: No consent required for this class.
+Course Notes: None
+Fees: None
+Instructor(s): Derex Griffin
+Offered By: Ira A. Fulton Schools of Engineering Units 3 Repeatable for credit No Component Lecture Last day to enroll August 27, 2025 Drop deadline September 03, 2025 Course withdrawal deadline November 05, 2025 Copy Class Link
+Repeatable for credit: No
+Component: Lecture
+Last day to enroll: August 27, 2025
+Drop deadline: September 03, 2025
+Course withdrawal deadline: November 05, 2025
+
+Term: Fall 2025
+URL: https://catalog.apps.asu.edu/catalog/classes/classlist?searchType=all&collapse=Y&keywords=68382&term=2257
+Course: IFT 540
+Title: Information Systems Development
+Number: 68382
+Instructor: Derex Griffin
+Location: ASU Online
+Dates: 8/21 - 12/5 (C)
+Units: 3
+Seats: 38 of 60
+Course Description: Proven techniques and methodologies for modeling information requirements and organizational data resources with a strong focus on gleaning information from data. Students learn how to discover, document and structure functional system requirements and user interface requirements at a level appropriate for advanced information technology practitioner, and develop conceptual data models. Covers the phases of a generic systems development life cycle (SDLC), object-oriented analysis and design (OOAD) with UML modeling, and Agile methodologies.
+Enrollment Requirements: Prerequisite(s): degree- or nondegree-seeking graduate student
+Consent: No consent required for this class.
+Course Notes: None
+Fees: None
+Instructor(s): Derex Griffin
+Offered By: Ira A. Fulton Schools of Engineering Units 3 Repeatable for credit No Component Lecture Last day to enroll August 27, 2025 Drop deadline September 03, 2025 Course withdrawal deadline November 05, 2025 Copy Class Link
+Repeatable for credit: No
+Component: Lecture
+Last day to enroll: August 27, 2025
+Drop deadline: September 03, 2025
+Course withdrawal deadline: November 05, 2025
+
+Term: Fall 2025
+URL: https://catalog.apps.asu.edu/catalog/classes/classlist?searchType=all&collapse=Y&keywords=69844&term=2257
+Course: IFT 310
+Title: Information Systems Project Development
+Number: 69844
+Instructor: Derex Griffin
+Location: ASU Online
+Dates: 8/21 - 10/10 (A)
+Units: 3
+Seats: 23 of 100
+Course Description: Intense review of information technology organizational management; project development for IT infrastructure, management and security systems.
+Enrollment Requirements: Pre- or corequisite(s) with C or better if completed: IFT 200; IFT 202 or 394 (Introduction to Cyber Security); IFT 250; IFT 266 or 394 (Networking Characteristics & Protocols) OR Visiting University Student
+Consent: No consent required for this class.
+Course Notes: None
+Fees: None
+Instructor(s): Derex Griffin
+Offered By: Ira A. Fulton Schools of Engineering Units 3 Repeatable for credit No Component Integrated Lecture/Lab Last day to enroll August 22, 2025 Drop deadline August 27, 2025 Course withdrawal deadline September 10, 2025 Copy Class Link
+Repeatable for credit: No
+Component: Integrated Lecture/Lab
+Last day to enroll: August 22, 2025
+Drop deadline: August 27, 2025
+Course withdrawal deadline: September 10, 2025
+
+Term: Fall 2025
+URL: https://catalog.apps.asu.edu/catalog/classes/classlist?searchType=all&collapse=Y&keywords=69845&term=2257
+Course: IFT 310
+Title: Information Systems Project Development
+Number: 69845
+Instructor: Derex Griffin
+Dates: 8/21 - 12/5 (C)
+Units: 3
+Seats: 24 of 58
+Course Description: Intense review of information technology organizational management; project development for IT infrastructure, management and security systems.
+Enrollment Requirements: Pre- or corequisite(s) with C or better if completed: IFT 200; IFT 202 or 394 (Introduction to Cyber Security); IFT 250; IFT 266 or 394 (Networking Characteristics & Protocols) OR Visiting University Student
+Consent: No consent required for this class.
+Course Notes: None
+Fees: None
+Instructor(s): Derex Griffin
+Offered By: Ira A. Fulton Schools of Engineering Units 3 Repeatable for credit No Component Integrated Lecture/Lab Last day to enroll August 27, 2025 Drop deadline September 03, 2025 Course withdrawal deadline November 05, 2025 Copy Class Link
+Repeatable for credit: No
+Component: Integrated Lecture/Lab
+Last day to enroll: August 27, 2025
+Drop deadline: September 03, 2025
+Course withdrawal deadline: November 05, 2025
+
+Term: Fall 2025
+URL: https://catalog.apps.asu.edu/catalog/classes/classlist?searchType=all&collapse=Y&keywords=71637&term=2257
+Course: IFT 310
+Title: Information Systems Project Development
+Number: 71637
+Instructor: Derex Griffin
+Location: ASU Online
+Dates: 10/15 - 12/5 (B)
+Units: 3
+Seats: 15 of 100
+Course Description: Intense review of information technology organizational management; project development for IT infrastructure, management and security systems.
+Enrollment Requirements: Pre- or corequisite(s) with C or better if completed: IFT 200; IFT 202 or 394 (Introduction to Cyber Security); IFT 250; IFT 266 or 394 (Networking Characteristics & Protocols) OR Visiting University Student
+Consent: No consent required for this class.
+Course Notes: None
+Fees: None
+Instructor(s): Derex Griffin
+Offered By: Ira A. Fulton Schools of Engineering Units 3 Repeatable for credit No Component Integrated Lecture/Lab Last day to enroll October 16, 2025 Drop deadline October 21, 2025 Course withdrawal deadline November 04, 2025 Copy Class Link
+Repeatable for credit: No
+Component: Integrated Lecture/Lab
+Last day to enroll: October 16, 2025
+Drop deadline: October 21, 2025
+Course withdrawal deadline: November 04, 2025
+
+Term: Fall 2025
+URL: https://catalog.apps.asu.edu/catalog/classes/classlist?searchType=all&collapse=Y&keywords=82488&term=2257
+Course: IFT 603
+Title: Technology Strategic Leadership and Ethics
+Number: 82488
+Instructor: Derex Griffin
+Dates: 8/21 - 12/5 (C)
+Units: 3
+Seats: 27 of 32
+Course Description: Highlights the actions and skills of distinguished strategic leaders from around the world who understand the complexity of challenging situations and have the foresight to make strategic decisions. As technology rapidly changes, strategic leaders must be capable to create competitive opportunities and prepare for ethical challenges not yet in focus. Covers key strategies and techniques to create customer value, to avoid ethical disaster, to motivate stakeholders and to identify the best solution which aligns with the company mission.
+Enrollment Requirements: Prerequisite(s): degree- or nondegree-seeking graduate student
+Consent: No consent required for this class.
+Course Notes: None
+Fees: None
+Instructor(s): Derex Griffin
+Offered By: Ira A. Fulton Schools of Engineering Units 3 Repeatable for credit No Component Lecture Last day to enroll August 27, 2025 Drop deadline September 03, 2025 Course withdrawal deadline November 05, 2025 Copy Class Link
+Repeatable for credit: No
+Component: Lecture
+Last day to enroll: August 27, 2025
+Drop deadline: September 03, 2025
+Course withdrawal deadline: November 05, 2025

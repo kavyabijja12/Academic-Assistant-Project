@@ -10,9 +10,12 @@ for filename in os.listdir(RAW_DIR):
     with open(os.path.join(RAW_DIR, filename), "r", encoding="utf-8") as f:
         text = f.read()
 
-    # Remove duplicate whitespace and navigation noise
-    clean_text = re.sub(r'\s+', ' ', text)
-    clean_text = re.sub(r'(?i)(ASU|Arizona State University).*?Polytechnic.*?(School|Campus)', '', clean_text)
+    # Remove excessive whitespace but preserve structure
+    clean_text = re.sub(r'[ \t]+', ' ', text)  # Replace multiple spaces/tabs with single space
+    clean_text = re.sub(r'\n\s*\n', '\n\n', clean_text)  # Preserve paragraph breaks
+    # Remove only repetitive navigation elements, not all ASU references
+    clean_text = re.sub(r'(?i)URL:\s*https://poly\.engineering\.asu\.edu[^\n]*\n', '', clean_text)
+    clean_text = re.sub(r'(?i)Parent:\s*https://poly\.engineering\.asu\.edu[^\n]*\n', '', clean_text)
 
     with open(os.path.join(CLEAN_DIR, filename), "w", encoding="utf-8") as f:
         f.write(clean_text)

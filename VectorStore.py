@@ -49,7 +49,7 @@ class GeminiEmbeddings(Embeddings):
 with open("chunks.json", "r", encoding="utf-8") as f:
     chunks = json.load(f)
 
-texts = [c["text"].lower() for c in chunks]
+texts = [c["text"] for c in chunks]  # Preserve original case for better embeddings
 metadatas = [{"source": c.get("source"), "type": c.get("type")} for c in chunks]
 
 # ---- Build and save FAISS index ----

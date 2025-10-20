@@ -28,11 +28,11 @@ def normalize_spaces_preserve_newlines(txt: str) -> str:
     txt = "\n".join(line.strip() for line in txt.split("\n"))
     return txt.strip()
 
-# Splitter for general text
+# Splitter for general text - improved parameters for better context
 splitter = RecursiveCharacterTextSplitter(
-    chunk_size=1200,
-    chunk_overlap=150,
-    separators=["\n\n", "\n", ".", " "],
+    chunk_size=1800,  # Increased from 1200 for more context
+    chunk_overlap=300,  # Increased from 150 for better continuity
+    separators=["\n\n", "\n", ".", "!", "?", ";", " ", ""],
 )
 
 # ----------- Regex patterns ------------

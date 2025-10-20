@@ -1,1 +1,535 @@
-URL: https://accounts.google.com/ServiceLogin?service=wise&passive=1209600&osid=1&continue=https://docs.google.com/document/d/1eJJ-jJlu27LAHcCgAynqfcl65eCeFm0c/edit&followup=https://docs.google.com/document/d/1eJJ-jJlu27LAHcCgAynqfcl65eCeFm0c/edit&ltmpl=docs&ec=GAZAGQ Parent: https://docs.google.com/document/d/1eJJ-jJlu27LAHcCgAynqfcl65eCeFm0c/edit ﻿Doctor of Information Technology 2025-2026 Handbook CONTENTS CONTENTS 2 Program Overview 4 About The Polytechnic School 4 Purpose of this Handbook 5 Graduate Advising and Program Contacts 5 Admission to the Program 6 Submission of an Application 6 Application Deadlines 6 Admission and Eligibility 7 Deferral of admission 7 Financial Aid 7 Program Requirements 8 Formulation of the Plan of Study 8 Course Requirements 9 Applied Doctoral Project 11 Faculty 14 Applied Doctoral Project Committee 14 Annual Progress Reports 15 Milestones 16 Responsibilities and Rights of Students and Faculty 17 Graduate Internships 19 Academic Progress and Degree Completion 20 Time Limit for Degree Completion 20 Continuous Enrollment Policy 20 Applying for Graduation 20 Pre-Admission or Transfer Credit 21 Leave of Absence Policy 21 Course Load and Credit Limits 21 Academic Standards and Policies 23 Satisfactory Student Progress 23 Grade and GPA Requirements 23 Academic Probation and Dismissal 24 Grade Grievance Appeal Policy 24 Academic Integrity, Professionalism, and Conduct 25 Academic Integrity 25 Student Code of Conduct 25 Use of Generative Artificial Intelligence (AI) 26 Use and Sharing of Academic Materials 26 Student Concerns and Support 26 Research Involving Human Subjects 27 Accessibility and Inclusive Excellence 27 Accessibility and Accommodations 27 Prohibition Against Discrimination, Harassment, and Retaliation 27 Inclusive Excellence at  The Polytechnic School (TPS) is redefining higher education through a hands-on, collaborative approach to learning that emphasizes solving real-world challenges. We believe that how students learn is just as important as what they learn, and we are committed to fostering an environment grounded in  is home to more than 6,000 undergraduate and graduate students. Surrounded by a unique desert arboretum, the campus features some of the most innovative engineering and technology programs in the country, supported by state-of-the-art laboratories, facilities, and centers. TPS programs are led by more than 100 expert faculty whose insight and innovation translate research into action and education into lasting impact. Graduate students in 13 master’s programs, four doctoral programs, and one graduate certificate (Learning Engineering) benefit from an interdisciplinary environment that integrates engineering, applied sciences, management, and technology. Through coursework, applied projects, and original research, students gain experiences that bridge theory and practice. To learn more about The Polytechnic School and its graduate programs, visit poly.engineering.. Students must adhere to policies of both the Polytechnic School and the Graduate College. Policies and this handbook are subject to change at any time; students will be notified. Graduate Advising and Program Contacts The Polytechnic School (TPS) Graduate Advising is the primary resource for graduate students seeking support with course planning, submission of the Interactive Plan of Study (iPOS), graduation requirements, and other administrative processes. Advisors also assist students in understanding and navigating policies at the program, college, and university levels. Students are encouraged to maintain regular communication with their academic advisor to clarify degree expectations and support timely progress toward graduation. Students can schedule an advising appointment or identify their academic advisors using the available resources. The TPS Graduate Advising Office is located on the second floor of Sutton Hall on the Polytechnic Campus and can be reached at polygrad@. While students are encouraged to first consult their Academic Success Coordinator or Graduate Program Chair for support, Dr. Paterson may be contacted in exceptional cases that require additional attention or cannot be resolved through regular advising channels. He can be reached at kurt.paterson@ Priority Deadlines Fall semester (August) March 15 Spring semester (January) August 15 Admission and Eligibility Applicants must meet the following admission requirements: * Minimum of a master’s degree in information technology, information sciences, data science, cybersecurity, computer science, or a closely-related field, from a regionally accredited college or university. * Minimum of 3.00 cumulative GPA (scale is 4.00=A) in the last 60 semester hours of a student’s first bachelor’s degree program * Minimum of 3.00 cumulative GPA (scale is 4.00=A) in graduate work Academic units submit recommendations regarding admission decisions to Graduate Admission Services; only the Dean of Graduate Admission can make formal offers of admission. Applicants are able to monitor the status of their application through My  from  Directory. In the first semester, you are assigned a faculty advisor who will assist you in your plan of study and your educational and career goals. Applied Doctoral Project Committee The role of the Applied Doctoral Project (ADP) Committee is to provide guidance and direction for the student's educational and research plan. The committee members must have the expertise to guide and evaluate research in the areas of the Applied Doctoral Project. The committee is responsible for mentoring the student, reviewing progress, and approving the deliverables and outcomes of the Applied Doctoral Project. The Applied Doctoral Project Committee must be selected from the program list of DIT faculty approved by the Graduate College. The ADP Chair is your faculty advisor. Three committee members are required, including the ADP Chair. The ADP committee members must be approved by the Graduate Program Chair and by the Dean of the Graduate College. It is the joint responsibility of the student and the ADP Chair to file an iPOS identifying the committee members no later than the second semester. The composition of the committee must be by the guidelines of  allows a maximum of three credit hours of internship. To explore available options and review policies and procedures, students can visit The Polytechnic Schools’ Internships webpage or access support through  Director’s Office or the Fulton Schools of Engineering Dean’s Office. Students can also reach out to the Dean of Students Office, Student Advocacy and Assistance, and University Ombudspersons for confidential, impartial guidance exploring possible solutions. Research Involving Human Subjects Graduate students conducting research involving human subjects under the auspices of  graduate programs or the policies in this handbook, contact the graduate advising office at polygrad@asu.edu or 480-727-1874. Appendix A Plan of Study Outline Plan of Study Outline 2 - for students with a completed MS IT from ASU Students may make a copy of the plan of study outline to track progress within their program, and create a plan towards graduation. While students may use a plan of study outline or sample iPOS for planning purposes, these do not replace the official iPOS, which must be submitted and approved via MyASU. For help with course selection and sample plans, students should consult their academic advisor.
+URL: https://accounts.google.com/ServiceLogin?service=wise&passive=1209600&osid=1&continue=https://docs.google.com/document/d/1eJJ-jJlu27LAHcCgAynqfcl65eCeFm0c/edit&followup=https://docs.google.com/document/d/1eJJ-jJlu27LAHcCgAynqfcl65eCeFm0c/edit&ltmpl=docs&ec=GAZAGQ
+Parent: https://docs.google.com/document/d/1eJJ-jJlu27LAHcCgAynqfcl65eCeFm0c/edit
+
+﻿Doctor of Information Technology
+2025-2026 Handbook
+
+CONTENTS
+
+CONTENTS 2
+Program Overview 4
+About The Polytechnic School 4
+Purpose of this Handbook 5
+Graduate Advising and Program Contacts 5
+Admission to the Program 6
+Submission of an Application 6
+Application Deadlines 6
+Admission and Eligibility 7
+Deferral of admission 7
+Financial Aid 7
+Program Requirements 8
+Formulation of the Plan of Study 8
+Course Requirements 9
+Applied Doctoral Project 11
+Faculty 14
+Applied Doctoral Project Committee 14
+Annual Progress Reports 15
+Milestones 16
+Responsibilities and Rights of Students and Faculty 17
+Graduate Internships 19
+Academic Progress and Degree Completion 20
+Time Limit for Degree Completion 20
+Continuous Enrollment Policy 20
+Applying for Graduation 20
+Pre-Admission or Transfer Credit 21
+Leave of Absence Policy 21
+Course Load and Credit Limits 21
+Academic Standards and Policies 23
+Satisfactory Student Progress 23
+Grade and GPA Requirements 23
+Academic Probation and Dismissal 24
+Grade Grievance Appeal Policy 24
+Academic Integrity, Professionalism, and Conduct 25
+Academic Integrity 25
+Student Code of Conduct 25
+Use of Generative Artificial Intelligence (AI) 26
+Use and Sharing of Academic Materials 26
+Student Concerns and Support 26
+Research Involving Human Subjects 27
+Accessibility and Inclusive Excellence 27
+Accessibility and Accommodations 27
+Prohibition Against Discrimination, Harassment, and Retaliation 27
+Inclusive Excellence at Arizona State University 27
+Fulton Schools of Engineering Mission and Values 28
+General ASU Information 29
+Academic Calendar and Deadlines 29
+Academic Notifications 29
+Department and University Resources 29
+Academics and Professional Development 29
+Student Support Services 29
+Student Wellness 30
+Business and Finance Services 30
+Contact Information 30
+Appendix A 31
+Plan of Study Outline 31
+
+Doctor of Information Technology
+ Program Overview
+
+The Doctor of Information Technology (DIT) program is designed for forward-thinking leaders aiming to deepen their expertise in advanced technologies; a critical component of effective organizational leadership. 
+
+The program adopts a multidisciplinary approach through a diverse curriculum. Students are encouraged to push the boundaries of what is possible and create substantial changes in the technological landscape. 
+Our mission is to make a meaningful impact on society by providing exceptional education, conducting research that bridges theory and practice, and fostering leadership excellence in professional service. We foster a supportive environment that encourages creativity, diversity, interdisciplinary collaboration, academic pursuits, and ethical conduct to create advancements that benefit society. 
+The DIT graduate will emerge as a technology leader in innovative areas such as transformative artificial intelligence, data analytics, cybersecurity, and other innovative fields. 
+
+About The Polytechnic School
+The Polytechnic School (TPS) is redefining higher education through a hands-on, collaborative approach to learning that emphasizes solving real-world challenges. We believe that how students learn is just as important as what they learn, and we are committed to fostering an environment grounded in ASU’s vision of the New American University: one that values excellence, access, and societal impact.
+Located in Mesa—Arizona’s third largest city and part of the Greater Phoenix area—the 600-acre ASU Polytechnic campus is home to more than 6,000 undergraduate and graduate students. Surrounded by a unique desert arboretum, the campus features some of the most innovative engineering and technology programs in the country, supported by state-of-the-art laboratories, facilities, and centers.
+TPS programs are led by more than 100 expert faculty whose insight and innovation translate research into action and education into lasting impact. Graduate students in 13 master’s programs, four doctoral programs, and one graduate certificate (Learning Engineering) benefit from an interdisciplinary environment that integrates engineering, applied sciences, management, and technology. Through coursework, applied projects, and original research, students gain experiences that bridge theory and practice. To learn more about The Polytechnic School and its graduate programs, visit poly.engineering.asu.edu. 
+Purpose of this Handbook
+
+The purpose of this handbook is to provide guidance and information related to admission, degree requirements, and general policies and procedures for graduate students in the Polytechnic School. Students must adhere to policies of both the Polytechnic School and the Graduate College. Policies and this handbook are subject to change at any time; students will be notified.
+Graduate Advising and Program Contacts
+
+The Polytechnic School (TPS) Graduate Advising is the primary resource for graduate students seeking support with course planning, submission of the Interactive Plan of Study (iPOS), graduation requirements, and other administrative processes. Advisors also assist students in understanding and navigating policies at the program, college, and university levels. Students are encouraged to maintain regular communication with their academic advisor to clarify degree expectations and support timely progress toward graduation.
+Students can schedule an advising appointment or identify their academic advisors using the available resources. The TPS Graduate Advising Office is located on the second floor of Sutton Hall on the Polytechnic Campus and can be reached at polygrad@asu.edu or 480-727-1874.
+Dr. Tatiana Walsh serves as the Graduate Program Chair for the Doctor of Information Technology program and can be reached at drtatiana.walsh@asu.edu. She is the primary contact for questions related to academic content, research, faculty mentorship, applied project advising, and professional development. She also supports students in navigating academic challenges, clarifying degree expectations, and aligning their program experience to career goals.
+Dr. Kurt Paterson is the Director of The Polytechnic School. While students are encouraged to first consult their Academic Success Coordinator or Graduate Program Chair for support, Dr. Paterson may be contacted in exceptional cases that require additional attention or cannot be resolved through regular advising channels. He can be reached at kurt.paterson@asu.edu. 
+
+Admission to the Program
+ Admission to the Doctor of Information Technology program requires the completion of all general admission requirements and procedures set forth by the Office of Graduate Admission Services. For general information on applications, deadlines, international requirements, application requirements, and other information, please visit Graduate Admission Services. 
+Prior to submitting an application to Graduate Admission Services, applicants should review the information provided in this handbook regarding the degree program, including specific application requirements and deadlines.
+
+Submission of an Application
+
+For admission information and procedures, review the How and When to Apply For Graduate Admission website. Applications for all graduate degree programs and non-degree status must be submitted via the application website. 
+
+Admitted students who are unable to start their programs in their admitted term can request to defer their start to the next admissible semester. Students may submit a request to defer through their MyASU. 
+
+A complete Doctor of Information Technology program application includes the following items:
+
+* An online Graduate Admission application, including attachments of the following documents: (1) professional resume, (2) statement of purpose. 
+* Transcripts from each college and/or university attended. Unofficial transcripts can be uploaded directly to the online application. Official transcripts will be required if admitted.
+* Two (2) letters of recommendation
+* International applicants must also meet the English proficiency requirements, as defined by Graduate Admission Services. Please be sure to review the TOEFL, IELTS, Duolingo, or PTE score requirements, as international applications will not be processed without valid proof of English proficiency.
+
+Application Deadlines 
+
+The dates noted are priority deadlines for submitting a complete application. Applications received after this date may still be considered but are not guaranteed to be evaluated for the semester of application.
+ Polytechnic Campus Priority Deadlines 
+Fall semester (August) March 15
+Spring semester (January) August 15
+
+Admission and Eligibility 
+
+Applicants must meet the following admission requirements:
+
+* Minimum of a master’s degree in information technology, information sciences, data science, cybersecurity, computer science, or a closely-related field, from a regionally accredited college or university.
+* Minimum of 3.00 cumulative GPA (scale is 4.00=A) in the last 60 semester hours of a student’s first bachelor’s degree program
+* Minimum of 3.00 cumulative GPA (scale is 4.00=A) in graduate work
+
+Academic units submit recommendations regarding admission decisions to Graduate Admission Services; only the Dean of Graduate Admission can make formal offers of admission. Applicants are able to monitor the status of their application through My ASU. If admitted, the formal letter of admission can be downloaded from My ASU. If denied admission, letters are sent via email to the address on record.
+
+Deferral of admission
+Admitted students who are unable to begin in their intended term may request a deferral of their admission to the next admitting term by submitting a formal request via MyASU. Deferral approval is not guaranteed. 
+
+Financial Aid
+
+Several resources are available to assist students in understanding how to finance a graduate degree. We recommend visiting Pay for your Graduate Education via Graduate College, and Paying for College via Financial Aid and Scholarship Services. For an estimated cost of enrollment, visit: Standard Cost of Attendance.
+
+Funding is not guaranteed with admission. The Doctor of Information Technology program does not offer graduate research assistantships, but other funding opportunities may be available. For more information on funding opportunities, please visit: TPS Graduate Student Funding Opportunities. 
+
+Program Requirements
+ The Doctor of Information Technology requires a minimum of 60 credit hours. A maximum of 15 credit hours taken during the master’s degree can be applied as blanket credit towards the electives to the DIT degree if coursework is approved as applicable to the doctoral program. Students can complete the program in as little as three years. 
+
+The DIT is comprised of four milestones, which all students are required to pass successfully before graduation: 
+1. Completion of the core coursework. 
+2. Completing an approved Plan of Study. 
+3. IFT 701 Applied Doctoral Project Initiation with a grade of B or better. 
+4. IFT 703 Applied Doctoral Project with a grade of B or better. 
+
+Formulation of the Plan of Study
+
+After completing the core courses, students will be required to develop and submit a Plan of Study (iPOS) through MyASU. A minimum of 60 credit hours is needed in the Plan of Study. 
+
+The Plan of Study must have the following required components: 
+1. Required Core Courses - 12 credit hours
+2. Restricted Electives - Information Technology Concentration Coursework - 21 credit hours beyond the core
+3. Interdisciplinary Electives - 18 credit hours. 15 credit hours (subject to approval) of blanket coursework from the master’s degree may be applied in this section.
+4. Culminating Experience - 9 credit hours. 
+* IFT 701 Applied Doctoral Project Initiation (3 credit hours)
+* IFT 793 Applied Project (6 credit hours)
+
+A student is not eligible to register for IFT 701 Applied Doctoral Project Initiation without an approved iPOS. 
+
+Course Requirements 
+
+Required Core Courses (12 credit hours) 
+All incoming students must complete the required courses. 
+
+1. Cybersecurity
+* IFT 601 Applied Cybersecurity Systems Analysis (3)
+ * NOTE: Other courses may be approved to substitute for IFT 601 as recommended by the graduate program chair. 
+2. Data Science and Analytical Methods
+* IFT 602 Data Science Programming & Optimization (3)
+3. Leadership and Organizational Change 
+* IFT 603 Technology Strategic Leadership and Ethics (3)
+4. Research Design and Methods 
+* IFT 604 Applied Research & Development Solutions (3)
+ * NOTE: Other courses may be approved to substitute for IFT 604 as recommended by the graduate program chair. 
+
+Restricted Electives (21 credits)
+ Select 21 credits (7 courses) from the list below: 
+ IFT 510 Principles of Computer and Information Architecture (3)
+ IFT 511 Analyzing Big Data (3)
+ IFT 512 Advanced Big Data Analytics/AI (3)
+ IFT 520 Advanced Information Systems Security (3)
+ IFT 523 Network Forensics of Information Technology (3)
+ IFT 525 Introducing AI into CyberSecurity for Information Technology (3)
+ IFT 530 Advanced Database Management Systems (3) 
+ IFT 533 Data Visualization and Reporting for IT (3)
+ IFT 536 Natural Language Processing for IT (3)
+ IFT 540 Information Systems Development (3)
+ IFT 543 Security Compliance for IT (3)
+ IFT 545 Security Analysis (3)
+IFT 554 Middleware Programming and Database Security for IT (3)
+ IFT 560 Cloud Architecture for IT (3)
+ IFT 561 Data in the Cloud for IT (3)
+ IFT 562 Cloud Security and Operations for IT (3)
+ IFT 598 Special Topics (3)
+
+*IFT 598 Prompt Engineering Research for Data Analysis is highly recommended as it will prepare students for their applied doctoral project. See Information Technology Applied Doctoral Project Outline for more information. 
+
+**Students that completed a Master of Science in Information Technology within the Polytechnic School from Arizona State University may have completed the majority of the elective coursework mentioned above. Students in this scenario are required to complete 6 credit hours of restricted electives (IFT courses) not already completed in their MS degree, and 15 credit hours of interdisciplinary elective courses. 
+
+Interdisciplinary Electives (18 credits)
+All courses must be on an approved plan of study for them to apply to the DIT program. In consultation with the student’s faculty advisor, the student may select 18 credits (6 courses) of 500 or 600 level coursework from the following prefixes: CSE, EGR, GIT, GTD, HSE, IFT, OGL, OMT, SER, SOS, STP, or TEM.
+
+Note: students with a completed MS degree in a related field will apply fifteen credit hours of blanket coursework toward the interdisciplinary elective area. 
+
+Additional Requirement (3 credits)
+ IFT 701 Applied Doctoral Project Initiation (3 credits)
+
+Culminating Experience (6 credit hours)
+ IFT 793 Applied Project (6 credits)
+
+IFT 701 Applied Doctoral Project Initiation: 
+* Successful completion of IFT 701 provides eligibility for IFT 793 enrollment. 
+* Students may plan to take IFT 701 after completing a minimum of 6 credits of core coursework, including IFT 604.
+* Course provides guidance on the execution of an Applied Doctoral Project conducted as the culminating activity. 
+* The final deliverables are an execution plan for the Applied Doctoral Project and a well-defined first draft of the first three chapters of the research document: Introduction, Literature Review, and Methodology. 
+
+IFT 793 Applied Project: 
+* Applied Doctoral Project is when you are working with your Applied Doctoral Project Committee to complete your applied doctoral project deliverables and outcomes. 
+* The deliverables and outcomes include a research document, oral defense, and a tangible information technology solution with a strong emphasis on implementation and practical application. 
+* You will enroll in the course under the supervision of your faculty advisor. 
+* Students will register for IFT 793 after successful completion of IFT 701. In rare circumstances, students may take both IFT 701 and IFT 793 in the same semester by obtaining the approval of your faculty advisor and Graduate Program Chair. 
+* Students must be making satisfactory progress toward their Applied Doctoral Project and be in good academic standing. 
+* Registration for IFT 793 requires the IFT 793 Applied Doctoral Project Request Form in Adobe Acrobat Sign to be approved by your faculty advisor and the Graduate Program Chair. An approved iPOS must also be on file for IFT 793 registration. 
+Applied Doctoral Project
+ Applied Doctoral Project (ADP) is aimed at solving real-world projects within a specific professional field. It focuses on applying existing research and theories to address practical issues in a particular industry or organization.
+ The deliverables and outcome is a research document, oral defense, and a tangible information technology solution with a strong emphasis on implementation and practical application. The ADP may have industry sponsorship collaborating with the Applied Doctoral Project Committee.
+
+The research document is structured to have chapters, such as problem identification, literature review, methodology, results/findings, and conclusion. The content is heavily focused on the application of theories and models to real-world scenarios. It may involve case studies, action research, or the development of tools or processes relevant to a specific field.
+
+The primary audience is the practitioners and organizational leaders within the field. The impact is measured by the practical benefits and improvements that the applied doctoral project brings to the field. The impact is immediate and practical, often leading to direct changes or improvements within a specific context. Successfully passing the oral defense is the final step before completing your doctoral program.
+
+Practical applications can be found in fields such as public health, safety, sustainability, transportation, finance, agriculture, manufacturing, education, energy, technology, and hospitality, as well as in addressing global, cultural, social, environmental, economic, and organizational challenges.
+
+All students are required to register for at least one semester of graduate-level credit during the fall, spring, or summer session in which they conduct their culminating event. 
+
+Information Technology Applied Doctoral Project Outline
+
+The Applied Doctoral Project is structured across a sequence of courses designed to develop a practice-based research project. Each course aligns with a specific phase of the research.
+Chapter 1: Introduction 
+* Background and context
+* Research problem and questions
+* Purpose/Significance of study
+* Research Guiding Question
+* Limitations & Delimitations
+* Research Assumptions
+
+ * Determine Scope
+* Read, Read, Read
+* IRB Training (certified)
+* Statement of Problem
+* Purpose & Significance
+* Include a brief synthesis of the literature to show how existing research supports your topic.
+* Get reference management software (i.e. Zotero) to organize references with annotated bibliographies.
+* Methodology Exploration – select your method (will refine later)
+ * IFT 604 Applied Research & Development Solutions 
+* Semester 1
+ Chapter 2: Literature Review
+* Create Conceptual/Theoretical Framework (identify model/create model)
+
+ * Start your Literature Review.
+* To map the landscape of what is known (existing research).
+* To identify gaps, theoretical frameworks, and methodologies.
+* To provide context and justification for a new study
+ * IFT 598 Prompt Engineering Research for Data Analysis
+* Semester 2
+ Chapter 3: Methodology
+* Research design: Qualitative, Quantitative, Mixed
+* Describe Instrumentation
+* Data collection methods
+* Data analysis techniques
+* Ethical considerations
+* Justification of methods
+ * At the end of this course you will have your first draft of all three chapters of your Research Document.
+* Prepare for your Study 
+ * IFT 701 Applied Doctoral Project Initiation
+* Semester 3
+ Conduct Study
+
+ * Semester 4
+ Chapter 4: Results / Findings
+* Data Collection
+* Data Analysis
+* Presentation of analyzed data
+* Tables, graphs, or visualizations
+ * Preparing your Research Document
+* Preparing your Information Technology Solution
+* Prepare for Oral Defense
+
+ * IFT 793 Applied Project
+* Semester 5
+
+ Chapter 5: Conclusion and Recommendations
+* Summary of findings
+* Contributions to knowledge
+* Limitations
+* Suggestions for future research
+
+ * Complete your Research Document
+* Complete your Information Technology Solution
+* Present your Oral Defense
+
+ * IFT 793 Applied Project
+* Semester 6
+
+Faculty
+ The members of the faculty of Information Technology have diverse backgrounds and knowledge. Faculty members have significant expertise in many of the most important challenges that society faces. Many members of the faculty bring considerable industry experience to bear on their teaching and research. To learn more about the faculty, you may refer to the Polytechnic School Directory.
+
+In the first semester, you are assigned a faculty advisor who will assist you in your plan of study and your educational and career goals. 
+
+Applied Doctoral Project Committee
+The role of the Applied Doctoral Project (ADP) Committee is to provide guidance and direction for the student's educational and research plan. The committee members must have the expertise to guide and evaluate research in the areas of the Applied Doctoral Project. The committee is responsible for mentoring the student, reviewing progress, and approving the deliverables and outcomes of the Applied Doctoral Project. 
+
+The Applied Doctoral Project Committee must be selected from the program list of DIT faculty approved by the Graduate College. The ADP Chair is your faculty advisor. Three committee members are required, including the ADP Chair. The ADP committee members must be approved by the Graduate Program Chair and by the Dean of the Graduate College. 
+
+It is the joint responsibility of the student and the ADP Chair to file an iPOS identifying the committee members no later than the second semester.
+
+The composition of the committee must be by the guidelines of ASU Graduate College. Once the committee is established, changes to the committee are highly discouraged. Any changes to the committee is approved by the Graduate Program Chair and by the Dean of the Graduate College. 
+
+Any changes to the committee must be submitted through the iPOS and approved by the academic unit and the Graduate College. 
+Annual Progress Reports
+Students will complete a report of their progress towards degree requirements in the spring semester and will receive written feedback. Feedback and guidance will be provided on how students are progressing, or need to improve, in terms of coursework, research, and professional development. Each spring an updated copy of the student’s CV (that includes teaching, conference papers or journal publications) and a 1-2 page progress report will be provided to the ADP Chair and the Graduate Program Chair. Students can include anything else about their experiences in the DIT program that year that they deem pertinent to this assessment.
+
+Written feedback by the ADP Chair which includes input from the ADP committee members will be provided to the student before the end of the semester. In the case of unsatisfactory progress, the feedback will explicitly provide objectives to be met to avoid dismissal from the program.
+
+The purpose of these Annual Progress Reports is threefold. First, we wish to encourage students to formalize their plans for completion of their degree. Second, we wish to provide specific and formative feedback from the DIT faculty on students’ progress. Third, we wish to help you monitor and address any barriers to your progress (e.g., coursework, administrative issues, and applied doctoral project development).
+
+Milestones
+ The Doctor of Information Technology Milestone Timeline outlines a standard six-semester path for completing the degree. Individual progress may vary based on personal and professional situations. Students are required to coordinate with their ADP Chair and the Graduate Program Chair to establish appropriate expectations. 
+
+ Milestone Activity
+ Time Frame
+ 1
+ Introduce yourself to IFT faculty advisor
+ In the first semester, who is your ADP Chair.
+ 2
+ Engage in research – Early and Often 
+ Start in the first semester and continue through the program.
+ 3
+ Take the required core courses and obtain a “B” grade or better in each
+ Complete these core courses in the first two semesters
+ 4
+ Establish a Applied Doctoral Project (ADP) Committee
+ Select two DIT faculty to serve as members on your ADP Committee by the end of your second semester.
+ 5
+ Submit your Interactive Plan of Study (iPOS)
+ By the end of your second semester. 
+ 6
+ Complete the IFT 701 Applied Doctoral Project Initiation
+ Enroll in IFT 701 in your third semester.
+ 7
+ Conduct your research study
+ Ideally by the end of your second year
+ 8
+ Start your Applied Doctoral Project deliverables
+ Enroll in IFT 793 in your fifth semester. 
+ 10
+ Complete your Applied Doctoral Project 
+ Enroll in IFT 793 in your sixth semester which is the end of your third year.
+
+Responsibilities and Rights of Students and Faculty
+
+Responsibilities and Rights of Doctoral Students
+
+Doctoral students are expected to engage actively and professionally with their academic advisor, along with their faculty advisor throughout their program. Key responsibilities include, but are not limited to:
+
+Maintain Communication. Regularly engage with your academic advisor, as well as your faculty advisor to clarify expectations, seek feedback, address concerns, and stay on track with program requirements.
+
+Complete Degree Requirements. Fulfill all required coursework and program milestones in a timely manner to remain in good academic standing.
+
+Manage Your Plan of Study. Submit and update your Interactive Plan of Study (iPOS) to reflect your coursework, culminating experience, and (if applicable) your thesis committee. Ensure that all information is listed and approved before scheduling your defense or final submission.
+
+Coordinate Milestone Scheduling. Work with your academic advisor, as well as your faculty advisor.
+
+Submit Materials and Respond to Feedback. Share required documents (e.g., written report) with your faculty advisor. Respond to feedback promptly and professionally to support your growth and continued progress.
+
+Prepare for Milestones. Thoroughly prepare for your applied project presentation by reviewing expectations, incorporating feedback, and refining your final deliverable.
+
+Meet Submission Deadlines. Submit all required documents for the culminating experience (e.g., applied project), and complete all Graduate College processes by posted deadlines.
+
+Comply with Policies and Standards. Understand and adhere to ASU policies regarding academic integrity, responsible research conduct, human subject protections, and the ethical use of generative AI. Seek guidance from your faculty advisor, academic advisor, or the Graduate Program Chair if questions arise.
+
+Pursue Professional Development. Take advantage of professional development opportunities related to research, teaching, career readiness, or applied practice, and seek funding opportunities to support your research and career goals, when applicable.
+
+Students pursuing an applied project have the right to request a change in their faculty advisor at any time if the advising relationship is not functioning effectively. Students are encouraged to consult their academic advisor or the Graduate Program Chair to discuss concerns and explore options for a smooth transition. All committee changes must be reflected in the iPOS.
+
+All graduate students are expected to read, understand, and meet the terms of the ASU Graduate College Policies and Procedures handbook as outlined at: ASU Graduate Policies and Procedures.
+
+Responsibilities and Rights of Faculty Advisors 
+
+Faculty who agree to serve as an advisor for a student’s applied project assume primary responsibility for supporting their academic progress, professional development, and successful milestone completion. Key responsibilities include, but are not limited to:
+
+Advising and Communication. Maintain regular, clear communication with the student (and co-chair, if applicable) to support a collaborative advising relationship. Foster a respectful and supportive mentoring environment that promotes student success.
+
+Professional Guidance. Provide mentorship on academic planning, project development, and professional skill-building. Offer timely, constructive feedback on written work, including final drafts, and help the student navigate and reconcile differing committee feedback, if applicable.
+
+Administrative Oversight. Support the development and maintenance of the student’s Interactive 
+Plan of Study (iPOS), including course selection. Assist in completing program milestones, including timely coordination with committee members and submission of required forms.
+
+Planning and Compliance. Help the student define a feasible scope and timeline for their applied project. 
+
+Policy Awareness. Stay informed about university and program policies related to degree requirements, academic integrity, generative AI, and research compliance. Consult with TPS Graduate Advising or the Graduate Program Chair as needed.
+
+Professional Support. Encourage the student to pursue relevant funding, fellowship, and professional development opportunities. Provide letters of recommendation or serve as a reference in support of the student’s academic and career goals, as appropriate.
+
+Faculty advisors have the right to withdraw from their advising role at any time if the advising relationship is not functioning effectively. In such cases, faculty are encouraged to consult with the Graduate Program Chair to facilitate a smooth transition for the student.
+
+Graduate Internships 
+
+Graduate students may pursue internships with external companies, nonprofits, government agencies, or other organizations during their studies to gain professional experience and develop career-specific skills aligned with their program of study. While internships are not required, they may be included on the Interactive Plan of Study (iPOS) as an optional component using the IFT 584: Internship course for academic credit.
+To be eligible for credit, the internship must be relevant to the student’s academic program and receive formal approval from the Graduate Program Chair. Students may apply up to three credit hours of IFT 584 (graded Pass/Fail) toward their degree requirements. These positions are typically paid by the host organization, but do not include tuition coverage or health insurance benefits through ASU. International students must confirm eligibility for Curricular Practical Training (CPT) and obtain formal approval from the International Students and Scholars Center (ISSC) before accepting any internship for credit.
+All internships must be conducted in compliance with TPS and ASU policies and must not interfere with academic progress or delay degree completion. Students are encouraged to consult their academic advisor, along with their faculty advisor or chair/co-chairs (as applicable), to ensure that the experience aligns with their academic and professional goals.
+The Polytechnic School allows a maximum of three credit hours of internship. To explore available options and review policies and procedures, students can visit The Polytechnic Schools’ Internships webpage or access support through ASU Career Services’ Internship Resources. 
+
+Academic Progress and Degree Completion
+ Time Limit for Degree Completion
+Graduate students must complete all program requirements, including coursework, milestones, and the successful completion of the culminating experience (e.g., applied project), within established time limits for their degree. Doctoral students have ten consecutive years from the semester of admission to complete their program. Exceptions may be granted only with approval from the student’s faculty advisor or chair/co-chairs (as applicable), the Graduate Program Chair, and the Dean of the Graduate College. Students who do not complete all degree requirements within the allowed timeline may be subject to withdrawal from the program or university. 
+Continuous Enrollment Policy
+Once admitted to a graduate degree program, students must be registered for a minimum of one credit hour of graduate-level coursework (not audit) during each fall and spring semester of their graduate education. Summer enrollment is required only if the student (1) begins the program in a summer term, (2) is completing a culminating experience (e.g., applied project), or (3) plans to graduate during the summer term. This credit must appear on the Plan of Study or must be an appropriate graduate-level course (e.g. 595, Continuing Registration). 
+Students who have completed all necessary coursework but still need to complete their culminating experience can request an override for 595 Continuing Registration for 1 credit hour to maintain active status in their program. First term requests are sent to the student’s committee chair to approve and verify that the student is making adequate progress. If a second term request is necessary, along with the override request the student must submit a timeline of remaining requirements to verify how they plan to complete the program in that semester.
+Courses with grades of “W” (Withdrawal), “X” (Audit), or “I” (Incomplete) will not satisfy the continuous enrollment requirements for that semester. Students resolving an “I” grade must remain enrolled until the incomplete is cleared. Failure to meet continuous enrollment requirements may result in being withdrawn as an active student from the program. 
+Applying for Graduation
+Graduate students should become familiar with the process of applying for graduation to ensure the graduation application is submitted by the deadline of the graduating semester. To view current and upcoming deadlines, students should log into MyASU and click on the Graduation tab. Before submitting the graduation application, students must ensure their Interactive Plan of Study (iPOS) is accurate, fully approved, and up to date.
+Students completing an applied project must follow all Graduate College graduation procedures and submission deadlines. 
+Pre-Admission or Transfer Credit
+Graduate-level coursework completed prior to admission, whether at ASU or another accredited institution, may be included on the Interactive Plan of Study (iPOS) if it was not applied to a previously awarded degree. No more than fifteen credit hours of pre-admission or transfer coursework is accepted. Eligible courses must be completed at the graduate level (500-level or higher) with a grade of “B” (3.00) or higher, be relevant to the student’s program of study, and have been completed within three years of the semester of admission to the graduate program. All transfer credits are subject to review and approval by the Graduate Program Chair and the Dean of the Graduate College. 
+Leave of Absence Policy
+Students planning to discontinue enrollment for a semester or more must request approval for a leave of absence through the Plan of Study (iPOS) petition titled Leave of Absence Request. The Graduate College allows for a leave of absence for a maximum of two semesters during a student’s entire program. A petition for a leave of absence may be submitted through a student’s interactive plan of study and must be approved by the Graduate College. This request must be submitted and approved before the start of the semester of the anticipated absence.
+An approved leave of absence will enable students to re-enter their program without reapplying to the university and the graduate program. Students who do not enroll for a fall or spring semester and are not on an approved Leave of Absence are considered withdrawn from the university under the assumption that they have decided to discontinue their program. A student removed for this reason may reapply for admission to resume their degree program; the application will be considered along with all other new applications to the degree program.
+A student with a Graduate College-approved Leave of Absence is not required to pay tuition and/or fees, but in turn is not permitted to place any demands on university faculty or use any university resources. See the ASU Graduate Policies and Procedures for more information.
+Course Load and Credit Limits
+Registration in nine (9) credits is considered a full-time load for graduate students at ASU, and graduate students in the Ira A. Fulton Schools of Engineering are restricted to a maximum of 12 credits per semester. Overrides to register for more than 12 credits require the approval of the student’s committee chair and Graduate Program Chair and will be granted only in exceptional cases. Requests to register for more than 15 credits will not be supported. 
+
+Program or University Withdrawals
+Graduate students who intend to leave their program and the university must submit a Voluntary Withdrawal Form and separately withdraw from their courses through MyASU. International students must consult the International Students and Scholars Center (ISSC) before initiating a withdrawal, as it may affect visa status. Students planning to change degree programs should not withdraw from their current program until they have been officially admitted to the new one. In cases of serious illness or personal hardship, students may request a Medical or Compassionate Withdrawal, which counts toward maintaining continuous enrollment if approved.
+
+Academic Standards and Policies 
+ Satisfactory Student Progress
+To remain in satisfactory progress standing, all doctoral students must make consistent, timely advancement toward the completion of their degree. This includes meeting all academic performance benchmarks established by the university, the Graduate College, and the academic program, including:
+1. maintaining a minimum 3.00 GPA in all required categories, as outlined below,
+2. earning a grade of “C” (2.00) or better in all courses listed on the Interactive Plan of Study (iPOS),
+3. completing all required degree milestones, such as coursework and the culminating experience (e.g., applied project), in a timely manner,
+4. adhering to the established ten-year time limit to complete the doctoral degree, and
+5. maintaining continuous enrollment in one graduate credit hour during fall and spring semesters, and summer if graduating or using university resources, unless on an approved Leave of Absence.
+After each semester, TPS Graduate Advising reviews student records to assess whether satisfactory progress is being made. Students who meet all expectations are considered in satisfactory progress standing. Those who do not may be placed on academic probation or recommended for dismissal from the program or university, depending on the circumstances.
+Grade and GPA Requirements
+All graduate students must achieve a cumulative GPA of 3.00 or higher (scale is 4.00 = “A”) in each of the following categories:
+1. all graduate-level coursework (500-level or above) taken after admission, excluding deficiency courses listed in the original letter of admission,
+2. all coursework listed on the approved Interactive Plan of Study (iPOS), and
+3. all post-bachelor’s coursework completed at ASU, regardless of whether it appears on the iPOS.
+Courses below “C” (2.00) cannot be included on the iPOS but will be factored into graduate and cumulative GPA calculations. Courses with an “I” (Incomplete) or “W” (Withdrawal) also cannot be included on the iPOS and may indicate unsatisfactory progress if multiple occurrences arise during the program. Students will be placed on academic probation if they fail to meet GPA requirements.
+
+Academic Probation and Dismissal 
+Graduate students may be placed on academic probation if they (1) fail to meet GPA requirements, or (2) fall behind on program milestones or do not demonstrate satisfactory academic progress as determined by their program and the Graduate College. Students placed on probation will receive formal notice from TPS Graduate Advising outlining the reason(s) for probation, the specific steps required to return to good standing, and the timeline in which conditions must be met. In most cases, students will have up to nine credit hours or one academic year, whichever comes first, to meet GPA requirements and any other outlined conditions. For progress-related issues (e.g., incomplete milestone, deficiency completion), a specific deadline will be provided in the probation notice.
+If a student fails to meet the conditions of probation or shows continued lack of progress, the TPS Graduate Affairs Committee may recommend dismissal from the program or university. The student will receive a written notice outlining the reasons for dismissal and will have 10 business days from the date of the letter to submit an appeal. The committee will review the appeal and issue a written decision. If the appeal is granted, the student must sign an agreement acknowledging the terms for continued enrollment and the consequences of not meeting them. If the appeal is denied, the committee will recommend dismissal to the Dean of the Graduate College, who makes the final decision. Students dismissed for academic reasons may reapply for admission after one year, subject to Graduate College approval.
+Note: Students admitted on a provisional or deficiency basis may also be recommended for dismissal if they fail to meet the specific conditions outlined in their admission letter. These may include: (1) failure to complete assigned deficiency courses within the specified timeline, (2) earning a grade below “B” (3.00) in a required deficiency course, or (3) deficiency GPA falling below 3.00 (scale is 4.00=A). Provisional or deficiency admits who do not meet their admission requirements are not eligible to appeal and will also be dismissed.
+Grade Grievance Appeal Policy 
+Graduate students seeking to appeal a final course grade must follow ASU’s official Grade Grievance Appeal Policy. Appeals must be initiated and resolved during the regular semester (fall or spring) immediately following the term in which the disputed grade was issued and must be completed before commencement. This policy only applies to final course grades. Concerns related to academic integrity violations, faculty misconduct, or discrimination are addressed through separate university policies. ASU prohibits retaliation against students or witnesses involved in grade grievance appeals. Students are encouraged to review both the informal and formal steps outlined in the appeal policy and consult their academic advisor as needed.
+
+Academic Integrity, Professionalism, and Conduct
+ Academic Integrity
+All graduate students are expected to uphold the highest standards of academic integrity as outlined by the university, the Graduate College, and the academic program. Key policies include the ASU Student Honor Code and the Fulton Schools of Engineering Honor Code. Newly admitted graduate students are required to complete the ASU Academic Integrity Tutorial during their first semester.
+Academic integrity violations may occur in any academic context, including coursework, research, or teaching duties. Violations include, but are not limited to, cheating, plagiarism, fabrication of data, tampering, and aiding or facilitating such misconduct. These violations may result in serious consequences such as grade penalties, loss of funding, registration holds, academic probation, suspension, or dismissal from the program or university. Sanctions may be imposed in accordance with policies established by the university, the Graduate College, and the academic program. Questions or concerns about academic integrity may be directed to the Fulton Schools of Engineering’s Academic Integrity Officer. For more information, visit the ASU Academic Integrity webpage.
+Student Code of Conduct
+The aim of education is the intellectual, personal, social, and ethical development of the individual. The educational process is ideally conducted in an environment that encourages reasoned discourse, intellectual honesty, openness to constructive change, and respect for the rights of all individuals. Self-discipline and respect for the rights of others in the university community are necessary for the fulfillment of such goals. The Student Code of Conduct is designed to promote this environment at Arizona State University.
+The Student Code of Conduct sets forth the standards of conduct expected of students who choose to join the university community. Students who violate these standards will be subject to disciplinary sanctions in order to promote their own personal development, to protect the university community, and to maintain order and stability on campus.
+All students are expected to adhere to the ABOR Student Code of Conduct.
+
+Use of Generative Artificial Intelligence (AI)
+The use of generative AI tools in any university context, including coursework, research, and teaching, is governed by ASU’s Academic Integrity Policy. Instructors and committees are responsible for defining what constitutes appropriate use of generative AI within their specific course or culminating experience (e.g., applied project). Graduate students are expected to consult their instructors or committee to determine whether, and to what extent, AI tools may be used.
+If generative AI is permitted, students must clearly disclose its use and provide proper attribution in all submitted documents or presentations. Failure to disclose or unauthorized use of generative AI may constitute an academic integrity violation and could result in disciplinary action.
+Students are encouraged to refer to the ASU Artificial Intelligence webpage, the Office of the University Provost’s Generative AI webpage, and the ASU Library Guide on Generative AI for guidance. These resources offer best practices for citing AI tools, linking to AI-generated outputs, and understanding the ethical considerations related to AI use in academic and research contexts. 
+Use and Sharing of Academic Materials
+All instructional content students engage with at ASU, including lectures, course materials, videos, assessments, and other educational resources, is protected by copyright. Students may not record, share, upload, sell, or distribute these materials outside the intended academic context unless explicitly authorized. This includes notes taken during class or content accessed through ASU learning platforms.
+Recording of class sessions is prohibited unless approved in advance as part of an official accommodation through ASU Student Accessibility and Inclusive Learning Services (SAILS). Students must also refrain from uploading to any course site, discussion board, or academic platform any material that is not their original work, unless they have complied with all applicable copyright laws. Instructors and ASU administrators reserve the right to remove content suspected of copyright infringement.
+Student Concerns and Support
+Graduate students who encounter challenges with peers, faculty, advisors, or staff are encouraged to seek resolution through the appropriate channels. For concerns involving harassment, discrimination, or retaliation, students should follow ASU’s official reporting procedures. For academic or interpersonal issues that impact progress but fall outside formal reporting structures, students may begin by consulting TPS Graduate Advising or the Graduate Program Chair. If additional support is needed, students may escalate the issue to The Polytechnic School Director’s Office or the Fulton Schools of Engineering Dean’s Office. Students can also reach out to the Dean of Students Office, Student Advocacy and Assistance, and University Ombudspersons for confidential, impartial guidance exploring possible solutions.
+Research Involving Human Subjects
+Graduate students conducting research involving human subjects under the auspices of ASU must obtain formal approval from the Institutional Review Board (IRB) before recruiting participants or collecting data. The process is coordinated through the ASU Office of Research Integrity and Assurance (ORIA) and conducted in compliance with federal regulations. 
+Accessibility and Inclusive Excellence
+ Accessibility and Accommodations
+ASU is committed to ensuring access and inclusion for all students. Students who need accommodations due to a disability must register with ASU Student Accessibility and Inclusive Learning Services (SAILS) and provide appropriate documentation to the relevant faculty, staff, or university representative in a timely manner. Early communication is essential to allow sufficient time to arrange accommodations in academic, testing, or other university-related settings. 
+Prohibition Against Discrimination, Harassment, and Retaliation
+ASU is committed to maintaining a safe, inclusive, and respectful environment for all members of the university community. ASU prohibits all forms of discrimination, harassment, and retaliation based on protected characteristics, including race, color, religion, sex, national origin, age, disability, veteran status, sexual orientation, gender identity, and genetic information.
+In accordance with Title IX, ASU does not discriminate based on sex in any educational program or activity, including admissions and employment. Sexual harassment and sexual violence are prohibited. Students who experience sex-based discrimination or harassment, including sexual assault, are encouraged to seek support and explore reporting options. For Title IX-related questions or reports, students are encouraged to reach out to ASU’s Title IX Coordinator. Confidential counseling is available through ASU Counseling Services. For more information, visit the ASU Sexual Violence Prevention webpage. For information on making a report please go to www.asu.edu/reportit/.
+Inclusive Excellence at Arizona State University
+Arizona State University is committed to inclusion - ethnic, intellectual, socioeconomic and cultural - and advancing knowledge that reflects the deepest possible grasp of broad perspectives. 
+
+Inclusive excellence is a term that reflects Arizona State University’s commitment to admitting all students who are qualified to attend the university under the university’s admission standards without regard to their race, sex, color, ethnicity or national origin. And, all ASU students and employees are welcome to participate in all ASU programs, groups, and organizations.
+
+The university provides those students with an education at the highest levels of excellence through a faculty of distinguished scholars. Doing so has resulted in the recent invitation for ASU to join the American Association of Universities (AAU) with a student body of more than 80,000 students on ASU’s four campuses. 
+Fulton Schools of Engineering Mission and Values
+The Fulton Schools of Engineering is committed to advancing ASU’s charter as “a comprehensive public research university, measured not by whom it excludes, but by whom it includes and how they succeed; advancing research and discovery of public value; and assuming fundamental responsibility for the economic, social, cultural and overall health of the communities it serves.”
+The Fulton Schools’ mission is to advance innovative research and education while fostering entrepreneurship and professional leadership. This mission is grounded in core values: cultivating excellence, delivering impactful innovation, encouraging bold thinking, fostering a collaborative learning community, and building a foundation for all to succeed.
+Central to this mission is a deep commitment to inclusive excellence, i.e., ensuring that policies, practices, and culture support the success and well-being of all students, faculty, and staff. Through these ongoing efforts, the Fulton Schools strive to be a global leader in advancing inclusive excellence in engineering education and practice.
+
+General ASU Information
+ Academic Calendar and Deadlines 
+Students are responsible for meeting all deadlines set within the ASU Academic Calendar. The calendar can be found at students.asu.edu/academic-calendar.
+Academic Notifications
+To stay informed and avoid delays, students must regularly check their MyASU portal, Interactive Plan of Study (iPOS), and ASU email for important updates from the program, TPS Graduate Advising, and the Graduate College. These platforms provide essential information about degree progress, registration holds, deadlines, and required actions. All official university communications are sent to the student’s ASU email, and timely responses are expected.
+Department and University Resources
+ASU offers a broad range of support services to help students succeed academically, professionally, and personally. The list below highlights many of these resources across several categories. For additional services, visit the ASU Graduate College, ASU Student Services, and Fulton Schools of Engineering Student Resources webpages.
+Academics and Professional Development
+* Academic Integrity Policy
+* ASU libraries
+* Career Centers (both ASU and Fulton Schools of Engineering)
+* Graduate Student Government
+* FSE student resources
+* Professional development
+* Writing Center
+Student Support Services
+* Student Accessibility and Inclusive Learning
+* Graduate Wellness Resources
+ * 10 Best Practices in Graduate Student Wellbeing
+* Housing
+* International Student Services
+ * FSE International Student Resources
+* Veterans 
+Student Wellness 
+* Counseling
+* Health
+* Pitchfork Pantry 
+* ASU Police 
+* Safety Escort reservations 
+Business and Finance Services
+* ASU ID cards
+* ASU bookstore
+* Parking and Transit
+* Student accounts
+* Emergency student loans
+* Student Crisis Fund 
+
+Contact Information
+For more information about the Polytechnic School graduate programs or the policies in this handbook, contact the graduate advising office at polygrad@asu.edu or 480-727-1874.
+
+Appendix A
+ Plan of Study Outline
+
+Plan of Study Outline 2 - for students with a completed MS IT from ASU
+Students may make a copy of the plan of study outline to track progress within their program, and create a plan towards graduation. While students may use a plan of study outline or sample iPOS for planning purposes, these do not replace the official iPOS, which must be submitted and approved via MyASU. For help with course selection and sample plans, students should consult their academic advisor.
