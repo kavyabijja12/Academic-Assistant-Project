@@ -6,3 +6,8 @@ langchain-community
 langchain-cohere
 faiss-cpu
 cohere
+groq
+sentence-transformers
+scikit-learn
+torch
+transformers
