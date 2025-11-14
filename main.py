@@ -4,6 +4,10 @@ ASU IFT Academic Assistant - Main UI
 Professional chat interface for ASU Information Technology program
 """
 
+import os
+# Fix tokenizers parallelism warning
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
+
 import streamlit as st
 from dotenv import load_dotenv
 from SimpleUnbiasedRAG import SimpleUnbiasedRAG
@@ -15,18 +19,18 @@ load_dotenv()
 @st.cache_resource(show_spinner=False)
 def init_rag_system():
     """Initialize the RAG system"""
-    with st.spinner("🔄 Loading IFT Academic Assistant..."):
+    with st.spinner("Loading IFT Academic Assistant..."):
         rag = SimpleUnbiasedRAG()
         success = rag.load_systems()
         if not success:
-            st.error("❌ Failed to load RAG systems. Please check your API keys.")
+            st.error("Failed to load RAG systems. Please check your API keys.")
             st.stop()
         return rag
 
 def main():
     st.set_page_config(
         page_title="IFT Academic Assistant", 
-        page_icon="🎓", 
+        page_icon=None, 
         layout="wide",
         initial_sidebar_state="expanded"
     )
@@ -41,7 +45,7 @@ def main():
     # Sidebar - Student Information
     with st.sidebar:
         # Student Information Section
-        st.header("👤 Student Information")
+        st.header("Student Information")
         
         # Student profile
         col1, col2 = st.columns([1, 3])
@@ -53,13 +57,13 @@ def main():
             st.caption("kbijja@asu.edu")
         
         # Authentication status
-        st.success("✅ Authentication Successful")
-        st.info("🤖 Model: llama-3.1-8b-instant")
+        st.success("Authentication Successful")
+        st.info("Model: llama-3.1-8b-instant")
         
         st.divider()
         
         # Chat History Section
-        st.header("💬 Chat History")
+        st.header("Chat History")
         
         if st.session_state.chat_history:
             for i, message in enumerate(st.session_state.chat_history[-5:]):  # Show last 5
@@ -80,7 +84,7 @@ def main():
         st.divider()
         
         # Example Questions Section
-        st.header("💡 Example Questions")
+        st.header("Example Questions")
         
         example_questions = [
             "what are graduation requirements for MS in IT?",
@@ -95,12 +99,8 @@ def main():
     
     # Main Content Area
     # Header
-    col1, col2 = st.columns([1, 8])
-    with col1:
-        st.image("https://via.placeholder.com/40x40/4A90E2/FFFFFF?text=🎓", width=40)
-    with col2:
-        st.title("IFT Academic Assistant")
-        st.caption("Ask questions about IFT program details, courses, and academic tasks.")
+    st.title("IFT Academic Assistant")
+    st.caption("Ask questions about IFT program details, courses, and academic tasks.")
     
     st.divider()
     
@@ -132,8 +132,8 @@ def main():
             # Add evaluation info if available
             if "evaluation" in message:
                 eval_info = message["evaluation"]
-                winner_badge = f"🏆 {eval_info['winner'].upper()}"
-                confidence_badge = f"🎯 {eval_info['confidence']}"
+                winner_badge = f"{eval_info['winner'].upper()}"
+                confidence_badge = f"{eval_info['confidence']}"
                 
                 response_text += f"\n\n---\n*{winner_badge} • {confidence_badge}*"
             
@@ -156,7 +156,7 @@ def main():
             
             # Show sources if available
             if "sources" in message and message["sources"]:
-                with st.expander("📚 Sources"):
+                with st.expander("Sources"):
                     for i, source in enumerate(message["sources"][:3], 1):
                         if hasattr(source, 'page_content'):
                             snippet = source.page_content[:200] + ("..." if len(source.page_content) > 200 else "")
@@ -187,7 +187,7 @@ def main():
         )
     
     with col2:
-        send_button = st.button("➤", type="primary", use_container_width=True)
+        send_button = st.button("Send", type="primary", use_container_width=True)
     
     # Process user input - only when button is clicked or Enter is pressed
     if send_button and user_input.strip():
@@ -198,7 +198,7 @@ def main():
         })
         
         # Generate response
-        with st.spinner("🤖 AI Assistant is thinking..."):
+        with st.spinner("Processing your question..."):
             try:
                 start_time = time.time()
                 result = rag_system.ask(user_input)
@@ -217,23 +217,23 @@ def main():
                 st.rerun()
                 
             except Exception as e:
-                st.error(f"❌ Error: {e}")
-                st.info("💡 Please try again or check your internet connection")
+                st.error(f"Error: {e}")
+                st.info("Please try again or check your internet connection")
     
     # Footer
     st.markdown("<br><br>", unsafe_allow_html=True)
     st.markdown("""
     <div style='text-align: center; color: #666; font-size: 12px;'>
-        <p><strong>🎓 ASU Polytechnic School - Information Technology Program</strong></p>
-        <p>Academic Assistant • Unbiased AI Evaluation</p>
+        <p><strong>ASU Polytechnic School - Information Technology Program</strong></p>
+        <p>Academic Assistant</p>
     </div>
     """, unsafe_allow_html=True)
     
     # Performance stats in sidebar (hidden by default, can be expanded)
     with st.sidebar:
-        if st.button("📊 Show Performance Stats"):
+        if st.button("Show Performance Stats"):
             if rag_system.stats["total_queries"] > 0:
-                st.subheader("📈 System Statistics")
+                st.subheader("System Statistics")
                 col1, col2 = st.columns(2)
                 with col1:
                     st.metric("Gemini Wins", rag_system.stats["gemini_wins"])
