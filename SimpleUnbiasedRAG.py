@@ -1,23 +1,20 @@
 #!/usr/bin/env python3
 """
-Simple Unbiased RAG: Just the essential bias prevention
-- Blind evaluation (no model names)
-- Random A/B assignment
-- Single evaluator (Gemini)
-- Much simpler than the complex system
+RAG System using Gemini
+- Uses Gemini for question answering
+- Hybrid retrieval (FAISS + BM25)
+- Sentence Transformers for embeddings
 """
 
 import os
 import time
 import json
-import random
 from dotenv import load_dotenv
 
 # Fix tokenizers parallelism warning
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 import google.generativeai as genai
-from groq import Groq
 from sentence_transformers import SentenceTransformer
 import numpy as np
 import faiss
@@ -29,214 +26,49 @@ from VectorStore import SentenceTransformerEmbeddings
 load_dotenv()
 
 class SimpleUnbiasedRAG:
-    """Simple unbiased RAG system - just the essential bias prevention"""
+    """RAG system using Gemini"""
     
     def __init__(self):
-        # Initialize both systems
+        # Initialize Gemini system
         self.gemini_system = GeminiSystem()
-        self.groq_system = GROQSystem()
-        
-        # Single evaluator (Gemini)
-        genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
-        self.evaluator = genai.GenerativeModel("models/gemini-2.5-flash")
         
         # Simple stats
-        self.stats = {"gemini_wins": 0, "groq_wins": 0, "total_queries": 0}
+        self.stats = {"total_queries": 0}
         
     def load_systems(self):
-        """Load both systems"""
-        print("Loading simple unbiased RAG systems...")
+        """Load Gemini system"""
+        print("Loading RAG system...")
         
         gemini_loaded = self.gemini_system.load_system()
-        groq_loaded = self.groq_system.load_system()
         
         if gemini_loaded:
             print("Gemini system loaded")
-        if groq_loaded:
-            print("GROQ system loaded")
             
-        return gemini_loaded or groq_loaded
-    
-    def blind_evaluate(self, query, response_a, response_b):
-        """Simple blind evaluation - the core innovation"""
-        
-        # Randomly assign A/B to prevent bias (do this first to know which is which)
-        if random.choice([True, False]):
-            gemini_response, groq_response = response_a, response_b
-            gemini_is_a = True
-        else:
-            gemini_response, groq_response = response_b, response_a
-            gemini_is_a = False
-        
-        # Check for "I couldn't find" messages - prefer responses with actual information
-        no_info_phrases = [
-            "i couldn't find",
-            "i couldn't find specific information",
-            "couldn't find specific information",
-            "no information found",
-            "information not available",
-            "couldn't find information"
-        ]
-        
-        response_a_lower = response_a.lower()
-        response_b_lower = response_b.lower()
-        
-        a_has_no_info = any(phrase in response_a_lower for phrase in no_info_phrases)
-        b_has_no_info = any(phrase in response_b_lower for phrase in no_info_phrases)
-        
-        # If one has no info and the other doesn't, prefer the one with info
-        if a_has_no_info and not b_has_no_info:
-            # B has information, A doesn't - prefer B
-            actual_winner = "groq" if gemini_is_a else "gemini"
-            return {
-                "winner": actual_winner,
-                "reasoning": "Response B contains actual information while Response A indicates no information found.",
-                "confidence": "High"
-            }
-        elif b_has_no_info and not a_has_no_info:
-            # A has information, B doesn't - prefer A
-            actual_winner = "gemini" if gemini_is_a else "groq"
-            return {
-                "winner": actual_winner,
-                "reasoning": "Response A contains actual information while Response B indicates no information found.",
-                "confidence": "High"
-            }
-        # If both have no info or both have info, proceed with normal evaluation
-        
-        # Simple evaluation prompt
-        prompt = f"""
-You are an expert academic advisor. Evaluate these two responses to a student's question about ASU's IT program.
-
-**Question:** {query}
-
-**Response A:**
-{response_a}
-
-**Response B:**
-{response_b}
-
-Which response is better? Consider:
-- Accuracy and completeness
-- Clarity and helpfulness
-- Academic appropriateness
-- Prefer responses that provide actual information over those that say information wasn't found
-
-Respond with just "A" or "B" and a brief reason.
-"""
-        
-        try:
-            response = self.evaluator.generate_content(prompt)
-            result = response.text.strip()
-            
-            # Extract winner
-            if "A" in result and "B" not in result:
-                winner = "A"
-            elif "B" in result:
-                winner = "B"
-            else:
-                winner = "A"  # Default
-            
-            # Map back to actual model
-            if winner == "A":
-                actual_winner = "gemini" if gemini_is_a else "groq"
-            else:
-                actual_winner = "groq" if gemini_is_a else "gemini"
-            
-            return {
-                "winner": actual_winner,
-                "reasoning": result,
-                "confidence": "High" if len(result) > 50 else "Medium"
-            }
-            
-        except Exception as e:
-            print(f"Evaluation failed: {e}")
-            # Fallback: prefer the one without "couldn't find"
-            if a_has_no_info and not b_has_no_info:
-                return {
-                    "winner": "B",
-                    "reasoning": f"Evaluation failed, but Response B has information while Response A doesn't: {e}",
-                    "confidence": "Medium"
-                }
-            elif b_has_no_info and not a_has_no_info:
-                return {
-                    "winner": "A",
-                    "reasoning": f"Evaluation failed, but Response A has information while Response B doesn't: {e}",
-                    "confidence": "Medium"
-                }
-            return {
-                "winner": "gemini",
-                "reasoning": f"Evaluation failed: {e}",
-                "confidence": "Low"
-            }
+        return gemini_loaded
     
     def ask(self, query):
-        """Get responses and evaluate blindly"""
+        """Get response from Gemini"""
         start_time = time.time()
         
         print(f"Processing: {query}")
         
-        # Get both responses
-        gemini_result = None
-        groq_result = None
-        
-        # Gemini response
+        # Get Gemini response
         try:
             print("Getting Gemini response...")
             gemini_answer, gemini_docs, gemini_cached = self.gemini_system.ask(query)
-            gemini_result = {
+            result = {
                 "answer": gemini_answer,
                 "docs": gemini_docs,
                 "cached": gemini_cached,
-                "model": "gemini"
+                "model": "gemini",
+                "total_time": time.time() - start_time
             }
+            
+            self.stats["total_queries"] += 1
+            return result
         except Exception as e:
             print(f"Gemini failed: {e}")
-        
-        # GROQ response
-        try:
-            print("Getting GROQ response...")
-            groq_answer, groq_docs, groq_cached = self.groq_system.ask(query)
-            groq_result = {
-                "answer": groq_answer,
-                "docs": groq_docs,
-                "cached": groq_cached,
-                "model": "groq"
-            }
-        except Exception as e:
-            print(f"GROQ failed: {e}")
-        
-        # Handle single model case
-        if not gemini_result and not groq_result:
-            raise RuntimeError("Both models failed")
-        elif not gemini_result:
-            return groq_result
-        elif not groq_result:
-            return gemini_result
-        
-        # Blind evaluation
-        print("Blind evaluation...")
-        evaluation = self.blind_evaluate(query, gemini_result["answer"], groq_result["answer"])
-        
-        # Select winner
-        if evaluation["winner"] == "gemini":
-            winner = gemini_result
-            self.stats["gemini_wins"] += 1
-        else:
-            winner = groq_result
-            self.stats["groq_wins"] += 1
-        
-        # Add evaluation info
-        winner["evaluation"] = evaluation
-        winner["both_responses"] = {
-            "gemini": gemini_result,
-            "groq": groq_result
-        }
-        winner["total_time"] = time.time() - start_time
-        self.stats["total_queries"] += 1
-        
-        print(f"Winner: {winner['model'].upper()} (confidence: {evaluation['confidence']})")
-        
-        return winner
+            raise RuntimeError(f"Failed to get response: {e}")
 
 # Same system classes as before (simplified)
 class GeminiSystem:
@@ -331,117 +163,19 @@ You are an expert academic advisor for Arizona State University's Polytechnic Sc
         self.response_cache[query_lower] = result
         return result, docs, False
 
-class GROQSystem:
-    def __init__(self):
-        self.groq_client = Groq(api_key=os.getenv("GROQ_API_KEY"))
-        self.embedder = SentenceTransformer('all-MiniLM-L6-v2')
-        self.documents = []
-        self.embeddings = None
-        self.faiss_index = None
-        self.response_cache = {}
-        
-    def load_system(self):
-        try:
-            with open("chunks.json", "r", encoding="utf-8") as f:
-                chunks = json.load(f)
-            
-            self.documents = [chunk["text"] for chunk in chunks]
-            
-            print("Creating sentence transformer embeddings...")
-            self.embeddings = self.embedder.encode(self.documents)
-            
-            dimension = self.embeddings.shape[1]
-            self.faiss_index = faiss.IndexFlatIP(dimension)
-            self.faiss_index.add(self.embeddings.astype('float32'))
-            
-            return True
-        except Exception as e:
-            print(f"GROQ system load failed: {e}")
-            return False
-    
-    def _truncate_context(self, text, max_chars=2000):
-        """Truncate context to fit within token limits (roughly 1 char ≈ 0.25 tokens)"""
-        if len(text) <= max_chars:
-            return text
-        # Truncate and add indicator
-        return text[:max_chars] + "\n\n[Context truncated due to length limits...]"
-    
-    def ask(self, query):
-        query_lower = query.lower()
-        
-        if query_lower in self.response_cache:
-            return self.response_cache[query_lower], [], True
-        
-        query_embedding = self.embedder.encode([query])
-        scores, indices = self.faiss_index.search(query_embedding.astype('float32'), 2)  # Reduced from 4 to 2
-        
-        docs = [self.documents[i] for i in indices[0]]
-        # Truncate each doc and combine
-        truncated_docs = [self._truncate_context(doc, max_chars=800) for doc in docs]
-        context = "\n\n".join(truncated_docs)
-        
-        # Ensure total prompt is within limits (query + context + prompt template)
-        # GROQ limit is ~6000 tokens, so we keep context small
-        context = self._truncate_context(context, max_chars=1500)
-        
-        prompt = f"""You are an ASU IT academic advisor. Answer using ONLY the provided context.
-
-**Context:**
-{context}
-
-**Question:** {query}
-
-**Answer:**"""
-        
-        try:
-            response = self.groq_client.chat.completions.create(
-                model="llama-3.1-8b-instant",
-                messages=[{"role": "user", "content": prompt}],
-                temperature=0.1,
-                max_tokens=500  # Limit response length
-            )
-            
-            result = response.choices[0].message.content
-            
-            self.response_cache[query_lower] = result
-            return result, docs, False
-        except Exception as e:
-            # If still too large, try with even smaller context
-            if "413" in str(e) or "too large" in str(e).lower():
-                print(f"Request too large, using minimal context...")
-                minimal_context = "\n\n".join([self._truncate_context(doc, max_chars=300) for doc in docs[:1]])
-                minimal_prompt = f"""Answer this question about ASU IT program using ONLY this context:
-
-{minimal_context}
-
-Question: {query}
-
-Answer:"""
-                response = self.groq_client.chat.completions.create(
-                    model="llama-3.1-8b-instant",
-                    messages=[{"role": "user", "content": minimal_prompt}],
-                    temperature=0.1,
-                    max_tokens=300
-                )
-                result = response.choices[0].message.content
-                self.response_cache[query_lower] = result
-                return result, docs, False
-            else:
-                raise
-
 # Test
 if __name__ == "__main__":
     rag = SimpleUnbiasedRAG()
     success = rag.load_systems()
     
     if success:
-        print("\nTesting Simple Unbiased RAG")
+        print("\nTesting RAG System")
         print("=" * 40)
         
         result = rag.ask("What are the core IT courses?")
         
-        print(f"\nWinner: {result['model'].upper()}")
-        print(f"Reasoning: {result['evaluation']['reasoning']}")
-        print(f"Stats: Gemini {rag.stats['gemini_wins']}, GROQ {rag.stats['groq_wins']}")
+        print(f"\nModel: {result['model'].upper()}")
+        print(f"Answer: {result['answer'][:200]}...")
+        print(f"Total Queries: {rag.stats['total_queries']}")
     else:
         print("Failed to load system")
