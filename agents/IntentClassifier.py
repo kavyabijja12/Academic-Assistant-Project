@@ -6,6 +6,8 @@ Uses LangChain to classify user intent: "booking" vs "question"
 import sys
 from pathlib import Path
 import os
+import json
+import re
 from typing import Dict, Optional
 
 # Add parent directory to path for imports
@@ -146,40 +148,62 @@ User wants to schedule an appointment with an advisor
     
     def extract_booking_info(self, user_input: str) -> Dict:
         """
-        Extract booking-related information from user input (optional, for future use)
+        Extract booking-related information from user input using LLM
         
         Args:
             user_input: User's message
             
         Returns:
-            Dictionary with extracted info (advisor name, date, time, etc.)
+            Dictionary with extracted info (advisor name, date, time, reason)
         """
-        # This is a placeholder for future natural language parsing
-        # For now, we use structured UI, but this could be enhanced later
-        
-        prompt = f"""Extract booking information from this user input:
+        prompt = f"""Extract booking information from this user input. Return ONLY valid JSON, no other text.
 
 User input: "{user_input}"
 
-Extract:
-- advisor_name: Name of advisor (if mentioned)
-- preferred_date: Date preference (if mentioned)
-- preferred_time: Time preference (if mentioned)
-- reason: Reason for appointment (if mentioned)
+Extract the following information if mentioned:
+- advisor_name: Name of advisor (if mentioned, otherwise null)
+- preferred_date: Date preference in YYYY-MM-DD format or relative terms like "next Monday" (if mentioned, otherwise null)
+- preferred_time: Time preference like "2 PM" or "14:00" (if mentioned, otherwise null)
+- reason: Reason for appointment (if mentioned, otherwise null)
 
-Respond in JSON format:
+Respond with ONLY valid JSON in this exact format:
 {{
     "advisor_name": "name or null",
-    "preferred_date": "date or null",
-    "preferred_time": "time or null",
+    "preferred_date": "date string or null",
+    "preferred_time": "time string or null",
     "reason": "reason or null"
 }}
 """
         
         try:
             response = self.model.generate_content(prompt)
-            # Parse JSON response (simplified - in production, use proper JSON parsing)
-            # For now, return empty dict
+            result_text = response.text.strip()
+            
+            # Try to extract JSON from response (might have markdown code blocks)
+            json_match = re.search(r'\{[^{}]*\}', result_text, re.DOTALL)
+            if json_match:
+                json_str = json_match.group(0)
+            else:
+                # Try to find JSON between ```json and ```
+                json_block = re.search(r'```(?:json)?\s*(\{.*?\})\s*```', result_text, re.DOTALL)
+                if json_block:
+                    json_str = json_block.group(1)
+                else:
+                    json_str = result_text
+            
+            # Parse JSON
+            extracted_info = json.loads(json_str)
+            
+            # Validate and clean up the extracted info
+            return {
+                "advisor_name": extracted_info.get("advisor_name") if extracted_info.get("advisor_name") and extracted_info.get("advisor_name").lower() != "null" else None,
+                "preferred_date": extracted_info.get("preferred_date") if extracted_info.get("preferred_date") and extracted_info.get("preferred_date").lower() != "null" else None,
+                "preferred_time": extracted_info.get("preferred_time") if extracted_info.get("preferred_time") and extracted_info.get("preferred_time").lower() != "null" else None,
+                "reason": extracted_info.get("reason") if extracted_info.get("reason") and extracted_info.get("reason").lower() != "null" else None
+            }
+            
+        except json.JSONDecodeError as e:
+            # If JSON parsing fails, return empty dict
             return {
                 "advisor_name": None,
                 "preferred_date": None,
@@ -187,6 +211,7 @@ Respond in JSON format:
                 "reason": None
             }
         except Exception as e:
+            # On any other error, return empty dict
             return {
                 "advisor_name": None,
                 "preferred_date": None,

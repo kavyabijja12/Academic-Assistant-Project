@@ -14,6 +14,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 from agents.IntentClassifier import IntentClassifier
 from agents.BookingAgent import BookingAgent
 from agents.AuthenticationAgent import AuthenticationAgent
+from agents.BookingConversationAgent import BookingConversationAgent
 
 
 class AgentController:
@@ -24,6 +25,7 @@ class AgentController:
         self.intent_classifier = IntentClassifier()
         self.booking_agent = BookingAgent()
         self.auth_agent = AuthenticationAgent()
+        self.booking_conversation_agent = BookingConversationAgent()
     
     def route_request(self, user_input: str, student_context: Optional[Dict] = None) -> Dict:
         """
@@ -57,7 +59,7 @@ class AgentController:
                     }
                 }
             
-            # Student is authenticated, start booking flow
+            # Student is authenticated, start conversational booking flow
             return {
                 "intent": "booking",
                 "action": "start_booking",
@@ -67,7 +69,7 @@ class AgentController:
                     "program_level": student_context.get("program_level"),
                     "intent_confidence": intent_result["confidence"]
                 }
-                }
+            }
         else:
             # Question intent - route to RAG system
             return {
@@ -194,4 +196,30 @@ class AgentController:
             booking_result["email_error"] = str(e)
         
         return booking_result
+    
+    def initialize_booking_conversation(self, student_id: str, student_program: Optional[str] = None) -> Dict:
+        """
+        Initialize a conversational booking session
+        
+        Args:
+            student_id: Student ASU ID
+            student_program: Optional program level from student profile
+            
+        Returns:
+            Dictionary with initial booking context and message
+        """
+        return self.booking_conversation_agent.initialize_booking(student_id, student_program)
+    
+    def process_booking_message(self, user_input: str, booking_context: Dict) -> Dict:
+        """
+        Process a user message in the booking conversation
+        
+        Args:
+            user_input: User's message
+            booking_context: Current booking context/state
+            
+        Returns:
+            Dictionary with updated context, response message, and next action
+        """
+        return self.booking_conversation_agent.process_user_message(user_input, booking_context)
 
