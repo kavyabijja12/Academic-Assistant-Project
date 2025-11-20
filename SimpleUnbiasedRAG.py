@@ -135,7 +135,7 @@ class GeminiSystem:
         sources = [f"Source {i+1}: {doc.metadata.get('source', 'Unknown')}" for i, doc in enumerate(docs)]
         
         prompt = f"""
-You are an expert academic advisor for Arizona State University's Polytechnic School, specifically for the Information Technology program.
+You are an expert academic assisant for Arizona State University's Polytechnic School, specifically for the Information Technology program.
 
 **Instructions:**
 1. Answer the question using ONLY the provided context from ASU IT materials

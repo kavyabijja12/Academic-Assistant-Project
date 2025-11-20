@@ -7,6 +7,7 @@ Updated: uses labeled 'Send' submit and more robust styling to avoid red button
 import os
 import re
 import time
+import sqlite3
 from collections import defaultdict
 
 import streamlit as st
@@ -21,6 +22,162 @@ from services.CalendarService import CalendarService
 # Fix tokenizers parallelism warning
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 load_dotenv()
+
+DB_PATH = os.path.join(os.path.dirname(__file__), "chat_history.db")
+
+
+def get_db_connection():
+    return sqlite3.connect(DB_PATH)
+
+
+def init_chat_history_db():
+    conn = get_db_connection()
+    conn.execute(
+        """
+        CREATE TABLE IF NOT EXISTS chat_messages (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            asu_id TEXT NOT NULL,
+            role TEXT NOT NULL,
+            content TEXT NOT NULL,
+            timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+        )
+        """
+    )
+    conn.execute(
+        """
+        CREATE TABLE IF NOT EXISTS user_sessions (
+            asu_id TEXT PRIMARY KEY,
+            student_name TEXT NOT NULL,
+            student_email TEXT NOT NULL,
+            student_program TEXT NOT NULL,
+            last_login DATETIME DEFAULT CURRENT_TIMESTAMP
+        )
+        """
+    )
+    conn.commit()
+    conn.close()
+
+
+def save_message_to_db(asu_id: str, role: str, content: str):
+    if not asu_id:
+        return
+    conn = get_db_connection()
+    conn.execute(
+        "INSERT INTO chat_messages (asu_id, role, content) VALUES (?, ?, ?)",
+        (asu_id, role, content),
+    )
+    conn.commit()
+    conn.close()
+
+
+def load_recent_messages_from_db(asu_id: str, limit: int = 50):
+    conn = get_db_connection()
+    rows = conn.execute(
+        """
+        SELECT role, content
+        FROM chat_messages
+        WHERE asu_id = ?
+        ORDER BY timestamp DESC, id DESC
+        LIMIT ?
+        """,
+        (asu_id, limit),
+    ).fetchall()
+    conn.close()
+    messages = [{"role": row[0], "content": row[1]} for row in rows]
+    messages.reverse()
+    return messages
+
+
+def save_user_session(asu_id: str, student_name: str, student_email: str, student_program: str):
+    """Save user session to database"""
+    conn = get_db_connection()
+    conn.execute(
+        """
+        INSERT OR REPLACE INTO user_sessions (asu_id, student_name, student_email, student_program, last_login)
+        VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP)
+        """,
+        (asu_id, student_name, student_email, student_program),
+    )
+    conn.commit()
+    conn.close()
+
+
+def load_user_session(asu_id: str):
+    """Load user session from database"""
+    conn = get_db_connection()
+    row = conn.execute(
+        """
+        SELECT student_name, student_email, student_program
+        FROM user_sessions
+        WHERE asu_id = ?
+        """,
+        (asu_id,),
+    ).fetchone()
+    conn.close()
+    if row:
+        return {
+            "student_name": row[0],
+            "student_email": row[1],
+            "student_program": row[2],
+        }
+    return None
+
+
+def clear_user_session(asu_id: str):
+    """Clear user session from database"""
+    conn = get_db_connection()
+    conn.execute("DELETE FROM user_sessions WHERE asu_id = ?", (asu_id,))
+    conn.commit()
+    conn.close()
+
+
+def get_most_recent_session():
+    """Get the most recent user session from database"""
+    conn = get_db_connection()
+    row = conn.execute(
+        """
+        SELECT asu_id, student_name, student_email, student_program
+        FROM user_sessions
+        ORDER BY last_login DESC
+        LIMIT 1
+        """
+    ).fetchone()
+    conn.close()
+    if row:
+        return {
+            "asu_id": row[0],
+            "student_name": row[1],
+            "student_email": row[2],
+            "student_program": row[3],
+        }
+    return None
+
+
+def restore_user_session():
+    """Restore user session from database on app load"""
+    if st.session_state.get("session_restored"):
+        return
+    
+    session = get_most_recent_session()
+    if session:
+        st.session_state.authenticated = True
+        st.session_state.student_id = session["asu_id"]
+        st.session_state.student_name = session["student_name"]
+        st.session_state.student_email = session["student_email"]
+        st.session_state.student_program = session["student_program"]
+        st.session_state.session_restored = True
+        # Don't load old messages into chat_history - keep main chat area fresh
+        # Old messages will be shown in sidebar from DB directly
+
+
+def add_chat_message(role: str, content: str, **extras):
+    message = {"role": role, "content": content}
+    for key, value in extras.items():
+        if value is not None:
+            message[key] = value
+    st.session_state.chat_history.append(message)
+    if st.session_state.get("authenticated") and st.session_state.get("student_id"):
+        save_message_to_db(st.session_state.student_id, role, content)
 
 
 @st.cache_resource(show_spinner=False)
@@ -209,10 +366,10 @@ def show_login_modal():
     with st.container():
         st.subheader("Login Required")
         st.write("Please login to access the Academic Assistant")
-
+        
         asu_id = st.text_input("ASU ID", key="login_asu_id", placeholder="Enter your ASU ID")
         password = st.text_input("Password", type="password", key="login_password", placeholder="Enter your password")
-
+        
         col1, col2 = st.columns([1, 1])
         with col1:
             if st.button("Login", type="primary", use_container_width=True):
@@ -226,6 +383,11 @@ def show_login_modal():
                         st.session_state.student_name = student.name
                         st.session_state.student_email = student.email
                         st.session_state.student_program = student.program_level
+                        # Save session to database
+                        save_user_session(student.asu_id, student.name, student.email, student.program_level)
+                        # Don't load old messages into chat_history - keep main chat area fresh
+                        # Old messages will be shown in sidebar from DB directly
+                        st.session_state.session_restored = True
                         st.session_state.show_login = False
                         st.rerun()
                     else:
@@ -245,11 +407,17 @@ def initialize_session_state():
         "show_login": False,
         "booking_context": None,
         "booking_in_progress": False,
-        "chat_input_value": ""
+        "chat_input_value": "",
+        "history_loaded": False,
+        "session_restored": False,
     }
     for k, v in defaults.items():
         if k not in st.session_state:
             st.session_state[k] = v
+    
+    # Restore session from database if not already restored
+    if not st.session_state.get("session_restored"):
+        restore_user_session()
 
 
 def render_user_message(message):
@@ -306,6 +474,9 @@ def render_sidebar(rag_system):
         st.success("Authentication Successful")
         st.info(f"Program: {st.session_state.student_program.title()}")
         if st.button("Logout", use_container_width=True):
+            # Clear session from database
+            if st.session_state.student_id:
+                clear_user_session(st.session_state.student_id)
             st.session_state.authenticated = False
             st.session_state.student_id = None
             st.session_state.student_name = None
@@ -317,16 +488,23 @@ def render_sidebar(rag_system):
         if st.button("Login", type="primary", use_container_width=True):
             st.session_state.show_login = True
             st.rerun()
-
+    
     st.divider()
     st.header("Chat History")
-    if st.session_state.chat_history:
-        for message in st.session_state.chat_history[-5:]:
-            if message["role"] == "user":
+    # Show chat history from database (not current session)
+    if st.session_state.authenticated and st.session_state.get("student_id"):
+        db_messages = load_recent_messages_from_db(st.session_state.student_id, limit=50)
+        # Filter for user messages only, then take last 3
+        user_messages = [msg for msg in db_messages if msg["role"] == "user"]
+        if user_messages:
+            for message in user_messages[-3:]:  # Show last 3 user messages
                 content = message['content'][:50] + ('...' if len(message['content']) > 50 else '')
                 st.markdown(f"""<div style="background-color:#f5f5f5;border:1px solid #000;padding:8px 12px;border-radius:18px;margin:4px 0;font-size:14px;">{content}</div>""", unsafe_allow_html=True)
+        else:
+            st.info("No chat history yet")
     else:
         st.info("No chat history yet")
+    
     st.divider()
     st.header("Example Questions")
     example_questions = ["what are graduation requirements for MS in IT?", "What are the specializations in B.S in information technology?", "How do I apply for the applied project?"]
@@ -361,12 +539,12 @@ def render_advisor_selection(advisors, controller, booking_ctx):
             if st.button(f"Select {advisor['name'].split()[0]}", key=f"advisor_btn_{i}", use_container_width=True, type="primary"):
                 result = controller.process_booking_message(advisor["name"], booking_ctx)
                 st.session_state.booking_context = result["booking_context"]
-                st.session_state.chat_history.append({"role": "assistant", "content": result["message"]})
+                add_chat_message("assistant", result["message"])
                 if result["state"] == "complete":
                     st.session_state.booking_in_progress = False
                     st.session_state.booking_context = None
                 st.rerun()
-
+    
 
 def render_date_selection(suggested_dates, controller, booking_ctx):
     st.markdown("<br>", unsafe_allow_html=True)
@@ -385,7 +563,7 @@ def render_date_selection(suggested_dates, controller, booking_ctx):
                     date_input = alt_date.strftime("%B %d")
                     result = controller.process_booking_message(date_input, booking_ctx)
                     st.session_state.booking_context = result["booking_context"]
-                    st.session_state.chat_history.append({"role": "assistant", "content": result["message"]})
+                    add_chat_message("assistant", result["message"])
                     if result["state"] == "complete":
                         st.session_state.booking_in_progress = False
                         st.session_state.booking_context = None
@@ -412,7 +590,7 @@ def render_time_slots(slots, controller, booking_ctx):
                 if st.button(time_str, key=f"slot_btn_{date_obj}_{i}", use_container_width=True, type="primary"):
                     result = controller.process_booking_message(slot.isoformat(), booking_ctx)
                     st.session_state.booking_context = result["booking_context"]
-                    st.session_state.chat_history.append({"role": "assistant", "content": result["message"]})
+                    add_chat_message("assistant", result["message"])
                     if result["state"] == "complete":
                         st.session_state.booking_in_progress = False
                         st.session_state.booking_context = None
@@ -434,12 +612,12 @@ def render_booking_options(controller):
 
 
 def process_user_input(input_text, controller, rag_system):
-    st.session_state.chat_history.append({"role": "user", "content": input_text})
+    add_chat_message("user", input_text)
     if st.session_state.booking_in_progress and st.session_state.booking_context:
         with st.spinner("Processing..."):
             result = controller.process_booking_message(input_text, st.session_state.booking_context)
             st.session_state.booking_context = result["booking_context"]
-            st.session_state.chat_history.append({"role": "assistant", "content": result["message"]})
+            add_chat_message("assistant", result["message"])
             if result["state"] in ["complete", "cancelled"]:
                 st.session_state.booking_in_progress = False
                 if result["state"] == "complete":
@@ -453,13 +631,13 @@ def process_user_input(input_text, controller, rag_system):
         if route_result["intent"] == "booking":
             if route_result["action"] == "require_authentication":
                 st.session_state.show_login = True
-                st.session_state.chat_history.append({"role": "assistant", "content": "Please login to book an appointment. Click the 'Login' button in the sidebar."})
+                add_chat_message("assistant", "Please login to book an appointment. Click the 'Login' button in the sidebar.")
                 st.rerun()
             elif route_result["action"] == "start_booking":
                 init_result = controller.initialize_booking_conversation(student_context["asu_id"], None)
                 st.session_state.booking_context = init_result["booking_context"]
                 st.session_state.booking_in_progress = True
-                st.session_state.chat_history.append({"role": "assistant", "content": init_result["message"]})
+                add_chat_message("assistant", init_result["message"])
                 st.rerun()
         else:
             with st.spinner("Processing your question..."):
@@ -467,7 +645,7 @@ def process_user_input(input_text, controller, rag_system):
                     start_time = time.time()
                     result = rag_system.ask(input_text)
                     response_time = time.time() - start_time
-                    st.session_state.chat_history.append({"role": "assistant", "content": result["answer"], "sources": result.get("docs", []), "time": response_time})
+                    add_chat_message("assistant", result["answer"], sources=result.get("docs", []), time=response_time)
                     st.rerun()
                 except Exception as e:
                     st.error(f"Error: {e}")
@@ -478,10 +656,12 @@ def main():
     st.set_page_config(page_title="IFT Academic Assistant", page_icon="🎓", layout="wide", initial_sidebar_state="expanded")
     st.markdown(get_custom_styles(), unsafe_allow_html=True)
 
+    init_chat_history_db()
+
     # Initialize systems
     rag_system = init_rag_system()
     controller = init_agent_controller()
-    initialize_session_state()
+    initialize_session_state()  # This will restore session and load history if available
 
     # Sidebar
     with st.sidebar:
@@ -491,7 +671,7 @@ def main():
     if st.session_state.show_login:
         show_login_modal()
         return
-
+    
     # Header and Book button
     col_title, col_book = st.columns([3, 1])
     with col_title:
@@ -503,17 +683,17 @@ def main():
                 init_result = controller.initialize_booking_conversation(st.session_state.student_id, None)
                 st.session_state.booking_context = init_result["booking_context"]
                 st.session_state.booking_in_progress = True
-                st.session_state.chat_history.append({"role": "assistant", "content": init_result["message"]})
+                add_chat_message("assistant", init_result["message"])
                 st.rerun()
             else:
                 st.session_state.show_login = True
                 st.rerun()
-
+    
     st.divider()
     if st.session_state.booking_in_progress:
         st.info("🔄 **Booking in progress...** Please complete the booking conversation below.")
         st.markdown("---")
-
+    
     # Chat messages
     for message in st.session_state.chat_history:
         if message["role"] == "user":
@@ -530,7 +710,7 @@ def main():
     if "current_question" in st.session_state:
         st.session_state.chat_input_value = st.session_state.current_question
         del st.session_state.current_question
-
+    
     # IMPORTANT: use a labeled "Send" submit so Streamlit uses accessible text (easier to target)
     with st.form(key="chat_form", clear_on_submit=True):
         col1, col2 = st.columns([6, 1], gap="small")
@@ -540,11 +720,11 @@ def main():
         with col2:
             # <-- Labeled 'Send' (not arrow-only). This makes it much easier to style reliably.
             send_button = st.form_submit_button("→", type="primary", use_container_width=False)
-
+        
         if send_button and user_input.strip():
             st.session_state.chat_input_value = ""
             process_user_input(user_input.strip(), controller, rag_system)
-
+    
     # Footer
     st.markdown("<br><br>", unsafe_allow_html=True)
     st.markdown("<div style='text-align:center;color:#666;font-size:12px;'><p><strong>ASU Polytechnic School - Information Technology Program</strong></p><p>Academic Assistant</p></div>", unsafe_allow_html=True)
