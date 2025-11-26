@@ -10,7 +10,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from database.Database import init_database, get_session
-from database.models import Advisor, Student
+from database.models import Advisor, Student, Admin
 from datetime import datetime
 
 # Advisor data

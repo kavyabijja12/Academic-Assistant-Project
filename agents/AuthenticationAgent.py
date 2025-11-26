@@ -12,7 +12,8 @@ from typing import Optional, Dict
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from database.Database import get_session
-from database.models import Student
+from database.models import Student, Admin
+from datetime import datetime
 
 
 class AuthenticationAgent:
@@ -229,6 +230,130 @@ class AuthenticationAgent:
             return {
                 "success": False,
                 "message": f"Error updating password: {str(e)}"
+            }
+        finally:
+            db.close()
+    
+    def authenticate_admin(self, admin_id: str, password: str) -> Dict:
+        """
+        Authenticate an admin user
+        
+        Args:
+            admin_id: Admin ID (username or email)
+            password: Admin password
+            
+        Returns:
+            Dictionary with:
+            - success: bool
+            - admin: Admin object if successful, None otherwise
+            - message: str (error message if failed)
+        """
+        db = get_session()
+        try:
+            # Find admin by admin_id or email
+            admin = db.query(Admin).filter(
+                (Admin.admin_id == admin_id) | (Admin.email == admin_id)
+            ).first()
+            
+            if not admin:
+                return {
+                    "success": False,
+                    "admin": None,
+                    "message": "Admin not found. Please check your credentials."
+                }
+            
+            # Verify password
+            if not self.verify_password(password, admin.password_hash):
+                return {
+                    "success": False,
+                    "admin": None,
+                    "message": "Invalid password. Please try again."
+                }
+            
+            # Update last login
+            admin.last_login = datetime.utcnow()
+            db.commit()
+            
+            # Extract admin data before closing session to avoid DetachedInstanceError
+            admin_data = {
+                "admin_id": admin.admin_id,
+                "email": admin.email,
+                "name": admin.name,
+                "last_login": admin.last_login
+            }
+            
+            # Authentication successful
+            return {
+                "success": True,
+                "admin": admin_data,
+                "message": "Authentication successful"
+            }
+            
+        except Exception as e:
+            return {
+                "success": False,
+                "admin": None,
+                "message": f"Authentication error: {str(e)}"
+            }
+        finally:
+            db.close()
+    
+    def create_admin(self, admin_id: str, email: str, name: str, password: str) -> Dict:
+        """
+        Create a new admin account
+        
+        Args:
+            admin_id: Admin ID (username)
+            email: Admin email
+            name: Admin name
+            password: Plain text password (will be hashed)
+            
+        Returns:
+            Dictionary with success status and message
+        """
+        db = get_session()
+        try:
+            # Check if admin already exists
+            existing = db.query(Admin).filter(
+                (Admin.admin_id == admin_id) | (Admin.email == email)
+            ).first()
+            
+            if existing:
+                return {
+                    "success": False,
+                    "message": "Admin with this ID or email already exists."
+                }
+            
+            # Hash password
+            password_hash = self.hash_password(password)
+            
+            # Create admin
+            admin = Admin(
+                admin_id=admin_id,
+                email=email,
+                name=name,
+                password_hash=password_hash
+            )
+            
+            db.add(admin)
+            db.commit()
+            db.refresh(admin)
+            
+            return {
+                "success": True,
+                "message": "Admin account created successfully",
+                "admin": {
+                    "admin_id": admin.admin_id,
+                    "email": admin.email,
+                    "name": admin.name
+                }
+            }
+            
+        except Exception as e:
+            db.rollback()
+            return {
+                "success": False,
+                "message": f"Error creating admin: {str(e)}"
             }
         finally:
             db.close()

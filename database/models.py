@@ -101,3 +101,15 @@ class ChatHistory(Base):
         {'sqlite_autoincrement': True},
     )
 
+
+class Admin(Base):
+    """Admin model"""
+    __tablename__ = 'admins'
+    
+    admin_id = Column(String(50), primary_key=True)  # username or email
+    email = Column(String(100), nullable=False, unique=True)
+    name = Column(String(100), nullable=False)
+    password_hash = Column(String(255), nullable=False)
+    created_at = Column(DateTime, default=datetime.utcnow)
+    last_login = Column(DateTime, nullable=True)
+
