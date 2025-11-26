@@ -774,11 +774,20 @@ class BookingConversationAgent:
     
     def _match_time_from_input(self, user_input: str, available_slots: List[datetime]) -> Optional[datetime]:
         """Match time from user input to available slots - handles various time formats"""
-        user_lower = user_input.lower().strip()
+        user_input_stripped = user_input.strip()
+        user_lower = user_input_stripped.lower()
         
-        # Check if user clicked a slot (contains ISO format)
+        # Check if user clicked a slot (exact ISO format match first, then substring)
+        # First try exact match
         for slot in available_slots:
-            if slot.isoformat() in user_input:
+            slot_iso = slot.isoformat()
+            if user_input_stripped == slot_iso:
+                return slot
+        
+        # Then try substring match (for cases where ISO format might be embedded)
+        for slot in available_slots:
+            slot_iso = slot.isoformat()
+            if slot_iso in user_input_stripped or user_input_stripped in slot_iso:
                 return slot
         
         # Handle time period preferences (morning, afternoon, evening)

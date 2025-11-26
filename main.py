@@ -764,9 +764,14 @@ def render_time_slots(slots, controller, booking_ctx):
         for i, slot in enumerate(date_slots[:16]):
             col_idx = i % 4
             time_str = CalendarService().format_slot_time_only(slot)
+            # Create a unique key using the slot's ISO format to ensure uniqueness
+            slot_key = slot.isoformat().replace(":", "_").replace("-", "_").replace(".", "_")
+            button_key = f"slot_btn_{slot_key}"
             with cols[col_idx]:
-                if st.button(time_str, key=f"slot_btn_{date_obj}_{i}", use_container_width=True, type="primary"):
-                    result = controller.process_booking_message(slot.isoformat(), booking_ctx)
+                if st.button(time_str, key=button_key, use_container_width=True, type="primary"):
+                    # Store the selected slot in session state to ensure we use the correct one
+                    selected_slot_iso = slot.isoformat()
+                    result = controller.process_booking_message(selected_slot_iso, booking_ctx)
                     st.session_state.booking_context = result["booking_context"]
                     
                     # Check if booking is complete or cancelled
