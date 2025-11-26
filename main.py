@@ -865,7 +865,7 @@ def show_admin_dashboard():
     """Show admin dashboard with analytics"""
     col1, col2 = st.columns([3, 1])
     with col1:
-        st.title("📊 Admin Dashboard")
+        st.title("Admin Dashboard")
     with col2:
         st.markdown("<br>", unsafe_allow_html=True)
         if st.button("🔄 Refresh Data", use_container_width=True, key="refresh_dashboard"):
@@ -949,7 +949,7 @@ def show_admin_dashboard():
     st.markdown("---")
     
     # Category breakdown
-    st.subheader("📈 Prompt Categories Breakdown")
+    st.subheader("Categories Breakdown")
     
     col1, col2 = st.columns(2)
     
@@ -982,11 +982,8 @@ def show_admin_dashboard():
         </div>
         """, unsafe_allow_html=True)
     
-    st.markdown("---")
-    
     # Question subcategories breakdown (always show all 4 categories in fixed order)
-    st.markdown("---")
-    st.subheader("📚 Question Subcategories Breakdown")
+    st.subheader("Question Subcategories Breakdown")
     
     # Create subcategory chart data (show all 4 categories in fixed order)
     subcat_data = []
@@ -1022,7 +1019,7 @@ def show_admin_dashboard():
     st.markdown("---")
     
     # Recent activity
-    st.subheader("📋 Recent Activity")
+    st.subheader("Recent Activity")
     recent_messages = categorized[:20]  # Last 20 messages
     
     for msg in recent_messages:
@@ -1059,7 +1056,7 @@ def show_admin_dashboard():
     
     # Category details
     st.markdown("---")
-    st.subheader("📊 Detailed Statistics")
+    st.subheader("Detailed Statistics")
     
     # Create tabs for booking and each question subcategory (always show all 4)
     tab_names = ["Booking Requests"] + [f"{subcategory_display_names.get(subcat, subcat.replace('_', ' ').title())}" 
