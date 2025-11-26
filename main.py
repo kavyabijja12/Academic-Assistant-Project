@@ -712,7 +712,13 @@ def render_advisor_selection(advisors, controller, booking_ctx):
 
 def render_date_selection(suggested_dates, controller, booking_ctx):
     st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown("### 📅 Select an Alternative Date")
+    # Check if this is period-based selection
+    is_period_selection = booking_ctx.get("date_selection_mode") == "period"
+    
+    if is_period_selection:
+        st.markdown("### 📅 Select a Date from the Period")
+    else:
+        st.markdown("### 📅 Select an Alternative Date")
     st.markdown("---")
     num_cols = min(3, len(suggested_dates))
     cols = st.columns(num_cols if num_cols > 0 else 1)
@@ -721,8 +727,13 @@ def render_date_selection(suggested_dates, controller, booking_ctx):
             col_idx = i % num_cols if num_cols > 0 else 0
             date_str = alt_date.strftime("%b %d")
             day_name = alt_date.strftime("%A")
+            # Get slot count for this date if available
+            available_slots = booking_ctx.get("available_slots", [])
+            slot_count = len([s for s in available_slots if hasattr(s, 'date') and s.date() == alt_date])
+            slot_info = f" ({slot_count} slot{'s' if slot_count > 1 else ''})" if slot_count > 0 else ""
+            
             with cols[col_idx]:
-                st.markdown(f"""<div style="border:1px solid #000;border-radius:10px;padding:12px;margin-bottom:10px;background:white;text-align:center;"><div style="font-weight:bold;color:#000;font-size:16px;">{day_name}</div><div style="color:#000;font-size:18px;margin:5px 0;">{date_str}</div></div>""", unsafe_allow_html=True)
+                st.markdown(f"""<div style="border:1px solid #000;border-radius:10px;padding:12px;margin-bottom:10px;background:white;text-align:center;"><div style="font-weight:bold;color:#000;font-size:16px;">{day_name}</div><div style="color:#000;font-size:18px;margin:5px 0;">{date_str}</div>{f'<div style="color:#666;font-size:12px;margin-top:5px;">{slot_info}</div>' if slot_info else ''}</div>""", unsafe_allow_html=True)
                 if st.button(f"Select {date_str}", key=f"date_btn_{i}", use_container_width=True, type="primary"):
                     date_input = alt_date.strftime("%B %d")
                     result = controller.process_booking_message(date_input, booking_ctx)
@@ -805,7 +816,15 @@ def render_booking_options(controller):
     elif state == "need_advisor" and booking_ctx.get("available_advisors"):
         render_advisor_selection(booking_ctx["available_advisors"], controller, booking_ctx)
     elif state == "need_date" and booking_ctx.get("suggested_dates"):
-        render_date_selection(booking_ctx["suggested_dates"], controller, booking_ctx)
+        # Check if this is period-based selection (action: "show_period_dates")
+        # or alternative date suggestion (action: "suggest_alternatives")
+        action = booking_ctx.get("action", "")
+        if action == "show_period_dates" or booking_ctx.get("date_selection_mode") == "period":
+            render_date_selection(booking_ctx["suggested_dates"], controller, booking_ctx)
+        elif action == "suggest_alternatives":
+            render_date_selection(booking_ctx["suggested_dates"], controller, booking_ctx)
+        else:
+            render_date_selection(booking_ctx["suggested_dates"], controller, booking_ctx)
     elif state == "need_time" and booking_ctx.get("available_slots"):
         render_time_slots(booking_ctx["available_slots"], controller, booking_ctx)
 

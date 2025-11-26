@@ -329,5 +329,99 @@ Respond with ONLY valid JSON in this exact format:
                 "preferred_time": None,
                 "reason": None
             }
+    
+    def extract_date_period_info(self, user_input: str) -> Dict:
+        """
+        Extract date period information from user input using LLM
+        Determines if input is a specific date or a period expression
+        
+        Args:
+            user_input: User's date input
+            
+        Returns:
+            Dictionary with period information:
+            - type: "specific_date" or "period"
+            - period: "month" | "year" | "week" | null
+            - time_reference: "next" | "this" | "following" | null
+            - week_position: "first" | "last" | "second" | null
+            - day_range: {"start": int, "end": int} | null
+            - specific_date: "YYYY-MM-DD" | null
+        """
+        prompt = f"""Analyze this date expression and extract period information. Return ONLY valid JSON, no other text.
+
+User input: "{user_input}"
+
+Classify the input as either:
+1. "specific_date" - A specific date like "March 15", "next Monday", "December 5th"
+2. "period" - A period expression like "next month", "next year first week", "this month last week"
+
+If it's a period, extract:
+- period: "month" | "year" | "week" | null
+- time_reference: "next" | "this" | "following" | null
+- week_position: "first" | "second" | "third" | "fourth" | "last" | null (only if period mentions a week)
+- day_range: {{"start": int, "end": int}} | null (e.g., "first 5 days" -> {{"start": 1, "end": 5}})
+
+If it's a specific date, extract:
+- specific_date: Try to convert to YYYY-MM-DD format if possible, otherwise null
+
+Examples:
+- "next month" -> {{"type": "period", "period": "month", "time_reference": "next", "week_position": null, "day_range": null, "specific_date": null}}
+- "next year first week" -> {{"type": "period", "period": "year", "time_reference": "next", "week_position": "first", "day_range": null, "specific_date": null}}
+- "next month second week" -> {{"type": "period", "period": "month", "time_reference": "next", "week_position": "second", "day_range": null, "specific_date": null}}
+- "this month last week" -> {{"type": "period", "period": "month", "time_reference": "this", "week_position": "last", "day_range": null, "specific_date": null}}
+- "next month third week" -> {{"type": "period", "period": "month", "time_reference": "next", "week_position": "third", "day_range": null, "specific_date": null}}
+- "next month first 5 days" -> {{"type": "period", "period": "month", "time_reference": "next", "week_position": null, "day_range": {{"start": 1, "end": 5}}, "specific_date": null}}
+- "March 15" -> {{"type": "specific_date", "period": null, "time_reference": null, "week_position": null, "day_range": null, "specific_date": "2025-03-15"}}
+- "next Monday" -> {{"type": "specific_date", "period": null, "time_reference": null, "week_position": null, "day_range": null, "specific_date": null}}
+
+Respond with ONLY valid JSON in this exact format:
+{{
+    "type": "specific_date" or "period",
+    "period": "month" or "year" or "week" or null,
+    "time_reference": "next" or "this" or "following" or null,
+    "week_position": "first" or "last" or "second" or null,
+    "day_range": {{"start": int, "end": int}} or null,
+    "specific_date": "YYYY-MM-DD" or null
+}}
+"""
+        
+        try:
+            response = self.model.generate_content(prompt)
+            result_text = response.text.strip()
+            
+            # Try to extract JSON from response
+            json_match = re.search(r'\{[^{}]*\}', result_text, re.DOTALL)
+            if json_match:
+                json_str = json_match.group(0)
+            else:
+                json_block = re.search(r'```(?:json)?\s*(\{.*?\})\s*```', result_text, re.DOTALL)
+                if json_block:
+                    json_str = json_block.group(1)
+                else:
+                    json_str = result_text
+            
+            # Parse JSON
+            period_info = json.loads(json_str)
+            
+            # Validate and clean up
+            return {
+                "type": period_info.get("type", "specific_date"),
+                "period": period_info.get("period") if period_info.get("period") and period_info.get("period").lower() != "null" else None,
+                "time_reference": period_info.get("time_reference") if period_info.get("time_reference") and period_info.get("time_reference").lower() != "null" else None,
+                "week_position": period_info.get("week_position") if period_info.get("week_position") and period_info.get("week_position").lower() != "null" else None,
+                "day_range": period_info.get("day_range") if period_info.get("day_range") else None,
+                "specific_date": period_info.get("specific_date") if period_info.get("specific_date") and period_info.get("specific_date").lower() != "null" else None
+            }
+            
+        except (json.JSONDecodeError, KeyError, Exception) as e:
+            # If parsing fails, default to specific_date and try rule-based parsing
+            return {
+                "type": "specific_date",
+                "period": None,
+                "time_reference": None,
+                "week_position": None,
+                "day_range": None,
+                "specific_date": None
+            }
 
 

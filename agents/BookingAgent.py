@@ -115,7 +115,7 @@ class BookingAgent:
                 student_id=student_id,
                 advisor_id=advisor_id,
                 slot_datetime=slot_datetime,
-                status='pending',
+                status='BOOKED',
                 confirmation_email_sent=False,
                 reason=reason
             )
