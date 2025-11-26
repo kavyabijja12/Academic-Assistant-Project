@@ -121,31 +121,104 @@ class GeminiSystem:
         
         docs = self.retriever.invoke(query)
         
+        # Enhanced scoring function with metadata awareness
         def score(doc):
             text = doc.page_content.lower()
+            metadata = doc.metadata or {}
             query_words = query_lower.split()
+            
+            # Base score: word matches
             matches = sum(1 for word in query_words if word in text)
             if query_lower in text:
                 matches += len(query_words)
+            
+            # Boost for type relevance
+            doc_type = metadata.get('type', '').lower()
+            if 'specialization' in query_lower or 'focus area' in query_lower or 'concentration' in query_lower:
+                if 'specialization' in doc_type or 'focus area' in doc_type:
+                    matches += 5  # Significant boost for specialization-related chunks
+            
+            if 'course' in query_lower or 'class' in query_lower:
+                if 'course' in doc_type:
+                    matches += 3
+            
+            if 'requirement' in query_lower:
+                if 'requirement' in doc_type:
+                    matches += 3
+            
+            # Boost for program level match (if query mentions MS/BS)
+            program_level = metadata.get('program_level', '')
+            if 'ms' in query_lower or 'master' in query_lower or 'graduate' in query_lower:
+                if program_level == 'ms':
+                    matches += 2
+            elif 'bs' in query_lower or 'bachelor' in query_lower or 'undergraduate' in query_lower:
+                if program_level == 'bs':
+                    matches += 2
+            
             return matches
         
-        docs = sorted(docs, key=score, reverse=True)[:4]
+        # Sort by score
+        docs = sorted(docs, key=score, reverse=True)
         
-        context = "\n\n".join(d.page_content for d in docs)
+        # Add diversity: prefer chunks from different sources
+        def add_diversity(docs_list, max_docs=10):
+            """Select diverse chunks, preferring different sources"""
+            selected = []
+            seen_sources = set()
+            
+            # First pass: add high-scoring chunks from different sources
+            for doc in docs_list:
+                if len(selected) >= max_docs:
+                    break
+                source = doc.metadata.get('source', 'unknown')
+                source_key = source.split('/')[-1] if '/' in source else source  # Use filename as key
+                
+                # Prefer chunks from sources we haven't seen yet
+                if source_key not in seen_sources or len(selected) < max_docs // 2:
+                    selected.append(doc)
+                    seen_sources.add(source_key)
+            
+            # Second pass: fill remaining slots with highest scoring docs
+            for doc in docs_list:
+                if len(selected) >= max_docs:
+                    break
+                if doc not in selected:
+                    selected.append(doc)
+            
+            return selected[:max_docs]
+        
+        # Use 8-10 chunks with diversity
+        docs = add_diversity(docs, max_docs=10)
+        
+        # Build context with source labels for better LLM understanding
+        context_parts = []
+        for i, doc in enumerate(docs, 1):
+            source = doc.metadata.get('source', 'Unknown')
+            doc_type = doc.metadata.get('type', 'general_text')
+            # Clean source name for display
+            source_name = source.split('/')[-1] if '/' in source else source
+            source_name = source_name.replace('.txt', '').replace('_', ' ')
+            
+            context_parts.append(f"[Source {i} - {source_name} ({doc_type})]\n{doc.page_content}")
+        
+        context = "\n\n".join(context_parts)
         sources = [f"Source {i+1}: {doc.metadata.get('source', 'Unknown')}" for i, doc in enumerate(docs)]
         
         prompt = f"""
-You are an expert academic assisant for Arizona State University's Polytechnic School, specifically for the Information Technology program.
+You are an expert academic assistant for Arizona State University's Polytechnic School, specifically for the Information Technology program.
 
 **Instructions:**
 1. Answer the question using ONLY the provided context from ASU IT materials
-2. Be specific and detailed when information is available
-3. If asking about courses, include course codes, credits, and descriptions when available
-4. If asking about requirements, provide specific details about prerequisites, GPA requirements, etc.
-5. If asking about locations, specify campus locations and delivery methods (on-campus, online, hybrid)
-6. Format your response clearly with bullet points or numbered lists when appropriate
-7. If the information is not available in the context, clearly state "I couldn't find specific information about [topic] in the current ASU IT materials"
-8. Always be helpful and encourage students to contact advisors for additional information
+2. **IMPORTANT: Read through ALL context pieces and synthesize information across them. Do not rely on only a single snippet if others contain additional relevant information.**
+3. **If the context mentions multiple relevant items (courses, requirements, specializations, focus areas, options, steps), list ALL of them. Do not omit any items that appear in the context.**
+4. Be specific and detailed when information is available
+5. If asking about courses, include course codes, credits, and descriptions when available
+6. If asking about requirements, provide specific details about prerequisites, GPA requirements, etc.
+7. If asking about locations, specify campus locations and delivery methods (on-campus, online, hybrid)
+8. Format your response clearly with bullet points or numbered lists when appropriate
+9. If the information is not available in the context, clearly state "I couldn't find specific information about [topic] in the current ASU IT materials"
+10. **Before finalizing your answer, quickly verify: Did I use information from all relevant context pieces? Did I miss any items that should be included?**
+11. Always be helpful and encourage students to contact advisors for additional information
 
 **Context from ASU IT Materials:**
 {context}

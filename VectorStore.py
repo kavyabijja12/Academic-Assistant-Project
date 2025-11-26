@@ -128,7 +128,35 @@ if __name__ == "__main__":
         chunks = json.load(f)
 
     texts = [c["text"] for c in chunks]  # Preserve original case for better embeddings
-    metadatas = [{"source": c.get("source"), "type": c.get("type")} for c in chunks]
+    
+    # Extract program level from source or text content
+    def extract_program_level(chunk):
+        """Extract program level (bs/ms) from chunk source or content"""
+        source = chunk.get("source", "").lower()
+        text = chunk.get("text", "").lower()
+        
+        # Check source filename
+        if "b.s" in source or "bachelor" in source or "bs in" in source or "undergraduate" in source:
+            return "bs"
+        elif "m.s" in source or "master" in source or "ms in" in source or "graduate" in source:
+            return "ms"
+        
+        # Check text content for program mentions
+        if "bachelor" in text[:500] or "undergraduate" in text[:500] or "b.s" in text[:500]:
+            return "bs"
+        elif "master" in text[:500] or "graduate" in text[:500] or "m.s" in text[:500]:
+            return "ms"
+        
+        return None
+    
+    metadatas = [
+        {
+            "source": c.get("source"),
+            "type": c.get("type"),
+            "program_level": extract_program_level(c)
+        }
+        for c in chunks
+    ]
 
     # ---- Choose embedding method ----
     # Set USE_SENTENCE_TRANSFORMERS to True to use local embeddings (recommended if Gemini API is failing)
