@@ -8,9 +8,8 @@ from pathlib import Path
 import json
 import re
 from datetime import datetime, date, time, timedelta
-from typing import Dict, Optional, List, Tuple
+from typing import Dict, Optional, List
 from dateutil import parser as date_parser
-from calendar import monthrange
 
 # Add parent directory to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -237,59 +236,141 @@ class BookingConversationAgent:
                 "action": "error"
             }
         
-        # Step 1: Extract period information to classify input type
-        period_info = self._extract_period_info(user_input)
-        input_type = period_info.get("type", "specific_date")
+        # Step 1: Quick check - try rule-based parsing for obvious specific dates (fast path)
+        parsed_date = self._parse_date_from_text(user_input)
         
-        # PATH 1: Period expression (e.g., "next month", "next year first week")
-        if input_type == "period":
-            return self._handle_period_selection(period_info, booking_context, advisor_id)
-        
-        # PATH 2: Specific date (e.g., "March 15", "next Monday")
-        else:
+        # If we got a valid specific date from rule-based parsing, validate and proceed
+        if parsed_date and parsed_date >= date.today():
+            max_date = date.today() + timedelta(days=30)
+            
+            # Check if date is beyond 30 days
+            if parsed_date > max_date:
+                return {
+                    "success": False,
+                    "booking_context": booking_context,
+                    "message": f"The date {parsed_date.strftime('%A, %B %d, %Y')} is more than 30 days away. "
+                               f"Please select a date within the next 30 days or choose a different time period.",
+                    "state": self.STATE_NEED_DATE,
+                    "action": "clarify"
+                }
+            
+            # Check if date is a weekend (Saturday=5, Sunday=6)
+            if parsed_date.weekday() >= 5:
+                day_name = "Saturday" if parsed_date.weekday() == 5 else "Sunday"
+                return {
+                    "success": False,
+                    "booking_context": booking_context,
+                    "message": f"{parsed_date.strftime('%B %d, %Y')} is a {day_name}, and appointments are only available on weekdays (Monday-Friday). "
+                               f"Please select a different date or time period.",
+                    "state": self.STATE_NEED_DATE,
+                    "action": "clarify"
+                }
+            
+            # Valid specific date - proceed with specific date selection
             return self._handle_specific_date_selection(user_input, booking_context, advisor_id)
+        
+        # Step 2: Rule-based parsing didn't work - use LLM to classify (specific_date vs period)
+        classification = self._classify_date_input(user_input)
+        input_type = classification.get("type", "period")
+        
+        # Step 3a: LLM says it's a specific date
+        if input_type == "specific_date":
+            # Try to parse the specific date from LLM result or user input
+            llm_date_str = classification.get("specific_date")
+            if llm_date_str:
+                try:
+                    parsed_date = datetime.strptime(llm_date_str, "%Y-%m-%d").date()
+                except (ValueError, TypeError):
+                    parsed_date = self._parse_date_from_text(user_input)
+            else:
+                parsed_date = self._parse_date_from_text(user_input)
+            
+            # If we got a valid date, validate it
+            if parsed_date and parsed_date >= date.today():
+                max_date = date.today() + timedelta(days=30)
+                
+                # Check if date is beyond 30 days
+                if parsed_date > max_date:
+                    return {
+                        "success": False,
+                        "booking_context": booking_context,
+                        "message": f"The date {parsed_date.strftime('%A, %B %d, %Y')} is more than 30 days away. "
+                                   f"Please select a date within the next 30 days or choose a different time period.",
+                        "state": self.STATE_NEED_DATE,
+                        "action": "clarify"
+                    }
+                
+                # Check if date is a weekend
+                if parsed_date.weekday() >= 5:
+                    day_name = "Saturday" if parsed_date.weekday() == 5 else "Sunday"
+                    return {
+                        "success": False,
+                        "booking_context": booking_context,
+                        "message": f"{parsed_date.strftime('%B %d, %Y')} is a {day_name}, and appointments are only available on weekdays (Monday-Friday). "
+                                   f"Please select a different date or time period.",
+                        "state": self.STATE_NEED_DATE,
+                        "action": "clarify"
+                    }
+                
+                # Valid specific date - proceed with specific date selection
+                return self._handle_specific_date_selection(user_input, booking_context, advisor_id)
+        
+        # Step 3b: LLM says it's a period - handle as vague/period input
+        # Always return exactly 5 working days (with validation for >30 days)
+        return self._handle_vague_period_selection(user_input, booking_context, advisor_id)
     
-    def _handle_period_selection(self, period_info: Dict, booking_context: Dict, advisor_id: str) -> Dict:
-        """Handle period-based date selection (e.g., "next month", "first week")"""
-        # Calculate period date range
-        period_dates = self._calculate_period_dates(period_info)
+    def _handle_vague_period_selection(self, user_input: str, booking_context: Dict, advisor_id: str) -> Dict:
+        """Handle vague/period date selection - always returns exactly 5 working days"""
+        # Use LLM to extract search window
+        search_window = self._extract_search_window(user_input)
+        start_date = search_window.get("start_date")
+        end_date = search_window.get("end_date")
         
-        if not period_dates:
+        # Check if LLM returned null for both (meaning request is beyond 30 days)
+        if not start_date and not end_date:
             return {
                 "success": False,
                 "booking_context": booking_context,
-                "message": "I couldn't understand that period. Please try again, like 'next month', 'this month last week', or 'next year first week'.",
+                "message": f"The requested time period is more than 30 days away. "
+                           f"Please select a date within the next 30 days or choose a different time period.",
                 "state": self.STATE_NEED_DATE,
                 "action": "clarify"
             }
         
-        start_date, end_date = period_dates
+        # Fallback to default window if LLM failed
+        today = date.today()
+        max_date = today + timedelta(days=30)
         
-        # Validate date range (within 30 days limit)
-        max_date = date.today() + timedelta(days=30)
-        if start_date > max_date:
-            return {
-                "success": False,
-                "booking_context": booking_context,
-                "message": f"The period you specified is too far in the future. Please select a date within the next 30 days.",
-                "state": self.STATE_NEED_DATE,
-                "action": "clarify"
-            }
+        if not start_date:
+            start_date = today
+        if not end_date:
+            end_date = max_date
+        
+        # Ensure dates are within limits
+        if start_date < today:
+            start_date = today
+        if end_date > max_date:
+            end_date = max_date
+        if start_date > end_date:
+            start_date = today
+            end_date = max_date
         
         # Get first 5 working days with available slots
-        working_dates = self._get_first_n_working_days(start_date, min(end_date, max_date), 5, advisor_id)
+        working_dates = self._get_first_n_working_days(start_date, end_date, 5, advisor_id)
         
         if not working_dates:
-            # No available slots in the period
-            period_desc = self._format_period_description(period_info)
+            # No available slots in the window
             return {
                 "success": False,
                 "booking_context": booking_context,
-                "message": f"❌ Unfortunately, there are no available slots in {period_desc}.\n\n"
-                           f"Would you like to try a different period or date?",
+                "message": f"Unfortunately, there are no available slots in the requested period.\n\n"
+                           f"Would you like to try a different date or period?",
                 "state": self.STATE_NEED_DATE,
                 "action": "no_slots"
             }
+        
+        # Ensure exactly 5 (or fewer if not enough available)
+        working_dates = working_dates[:5]
         
         # Store suggested dates for user selection
         booking_context["suggested_dates"] = working_dates
@@ -303,9 +384,6 @@ class BookingConversationAgent:
         
         booking_context["available_slots"] = all_slots
         
-        # Format period description
-        period_desc = self._format_period_description(period_info)
-        
         # Create message with first 5 working days
         date_options = []
         for i, work_date in enumerate(working_dates, 1):
@@ -318,7 +396,7 @@ class BookingConversationAgent:
         return {
             "success": True,
             "booking_context": booking_context,
-            "message": f"Here are the first 5 available working days in {period_desc}:\n\n"
+            "message": f"Here are the first 5 available working days:\n\n"
                        f"{dates_list}\n\n"
                        f"Please select a date:",
             "state": self.STATE_NEED_DATE,
@@ -437,7 +515,7 @@ class BookingConversationAgent:
                     return {
                         "success": False,
                         "booking_context": booking_context,
-                        "message": f"❌ Unfortunately, there are no available slots on {parsed_date.strftime('%A, %B %d, %Y')}.\n\n"
+                        "message": f"Unfortunately, there are no available slots on {parsed_date.strftime('%A, %B %d, %Y')}.\n\n"
                                    f"Here are some alternative dates with available slots:\n\n"
                                    f"{dates_list}\n\n"
                                    f"Which date would you prefer?",
@@ -474,7 +552,7 @@ class BookingConversationAgent:
                         return {
                             "success": False,
                             "booking_context": booking_context,
-                            "message": f"❌ No available slots on {parsed_date.strftime('%A, %B %d, %Y')} or in the next 2 weeks.\n\n"
+                            "message": f"No available slots on {parsed_date.strftime('%A, %B %d, %Y')} or in the next 2 weeks.\n\n"
                                        f"The next available dates are:\n\n"
                                        f"{dates_list}\n\n"
                                        f"Would you like to book one of these dates instead?",
@@ -485,7 +563,7 @@ class BookingConversationAgent:
                         return {
                             "success": False,
                             "booking_context": booking_context,
-                            "message": f"❌ Unfortunately, there are no available slots on {parsed_date.strftime('%A, %B %d, %Y')} "
+                            "message": f"Unfortunately, there are no available slots on {parsed_date.strftime('%A, %B %d, %Y')} "
                                        f"or in the next 30 days for this advisor.\n\n"
                                        f"Would you like to:\n"
                                        f"• Try a different advisor\n"
@@ -500,7 +578,7 @@ class BookingConversationAgent:
                 return {
                     "success": False,
                     "booking_context": booking_context,
-                    "message": f"❌ Unfortunately, there are no available slots on {dates_str}.\n\n"
+                    "message": f"Unfortunately, there are no available slots on {dates_str}.\n\n"
                                f"Would you like to try other dates?",
                     "state": self.STATE_NEED_DATE,
                     "action": "clarify"
@@ -844,16 +922,26 @@ class BookingConversationAgent:
             pass
         
         # Try to extract date patterns
-        # Look for patterns like "March 15", "3/15", "15th of March"
+        # Look for patterns like "March 15", "3/15", "15th of March", "jan 3rd"
         month_patterns = {
-            "january": 1, "february": 2, "march": 3, "april": 4, "may": 5, "june": 6,
-            "july": 7, "august": 8, "september": 9, "october": 10, "november": 11, "december": 12
+            "january": 1, "jan": 1,
+            "february": 2, "feb": 2,
+            "march": 3, "mar": 3,
+            "april": 4, "apr": 4,
+            "may": 5,
+            "june": 6, "jun": 6,
+            "july": 7, "jul": 7,
+            "august": 8, "aug": 8,
+            "september": 9, "sep": 9, "sept": 9,
+            "october": 10, "oct": 10,
+            "november": 11, "nov": 11,
+            "december": 12, "dec": 12
         }
         
         for month_name, month_num in month_patterns.items():
             if month_name in text_lower:
-                # Try to extract day
-                day_match = re.search(r'\b(\d{1,2})\b', text)
+                # Try to extract day (handles "3rd", "3", "15th", etc.)
+                day_match = re.search(r'\b(\d{1,2})(?:st|nd|rd|th)?\b', text_lower)
                 if day_match:
                     try:
                         day = int(day_match.group(1))
@@ -868,22 +956,23 @@ class BookingConversationAgent:
         
         return None
     
-    def _extract_period_info(self, user_input: str) -> Dict:
+    def _classify_date_input(self, user_input: str) -> Dict:
         """
-        Extract period information from user input using LLM
+        Classify user input as specific_date or period using LLM
         
         Args:
-            user_input: User's date input
+            user_input: User's date/period input
             
         Returns:
-            Dictionary with period information
+            Dictionary with classification result
         """
         try:
             return self.intent_classifier.extract_date_period_info(user_input)
         except Exception as e:
-            print(f"Period extraction failed: {e}")
+            print(f"Date classification failed: {e}")
+            # Default to period if classification fails
             return {
-                "type": "specific_date",
+                "type": "period",
                 "period": None,
                 "time_reference": None,
                 "week_position": None,
@@ -891,199 +980,24 @@ class BookingConversationAgent:
                 "specific_date": None
             }
     
-    def _calculate_period_dates(self, period_info: Dict) -> Optional[Tuple[date, date]]:
+    def _extract_search_window(self, user_input: str) -> Dict:
         """
-        Calculate start and end dates for a period expression
+        Extract search window (start_date, end_date) from user input using LLM
         
         Args:
-            period_info: Dictionary with period information from LLM
+            user_input: User's date/period input
             
         Returns:
-            Tuple of (start_date, end_date) or None if invalid
+            Dictionary with start_date and end_date (date objects or None)
         """
-        today = date.today()
-        period = period_info.get("period")
-        time_ref = period_info.get("time_reference")
-        week_pos = period_info.get("week_position")
-        day_range = period_info.get("day_range")
-        
-        if not period or not time_ref:
-            return None
-        
         try:
-            if period == "month":
-                if time_ref == "next":
-                    # Next month
-                    if today.month == 12:
-                        start_date = date(today.year + 1, 1, 1)
-                        end_date = date(today.year + 1, 1, monthrange(today.year + 1, 1)[1])
-                    else:
-                        start_date = date(today.year, today.month + 1, 1)
-                        end_date = date(today.year, today.month + 1, monthrange(today.year, today.month + 1)[1])
-                elif time_ref == "this":
-                    # This month
-                    start_date = date(today.year, today.month, 1)
-                    end_date = date(today.year, today.month, monthrange(today.year, today.month)[1])
-                else:
-                    return None
-                
-                # Handle week position
-                if week_pos == "first":
-                    # First week of the month (first Monday to first Friday)
-                    start_date = self._get_first_working_day_of_month(start_date)
-                    end_date = start_date + timedelta(days=4)  # First Friday
-                    # Ensure dates don't exceed month boundaries
-                    month_end = date(start_date.year, start_date.month, monthrange(start_date.year, start_date.month)[1])
-                    if end_date > month_end:
-                        end_date = month_end
-                elif week_pos == "second":
-                    # Second week of the month (second Monday to second Friday)
-                    first_monday = self._get_first_working_day_of_month(start_date)
-                    start_date = first_monday + timedelta(days=7)  # Second Monday
-                    end_date = start_date + timedelta(days=4)  # Second Friday
-                    # Ensure dates don't exceed month boundaries
-                    month_end = date(start_date.year, start_date.month, monthrange(start_date.year, start_date.month)[1])
-                    if start_date > month_end:
-                        # Second week doesn't exist in this month, return None
-                        return None
-                    if end_date > month_end:
-                        end_date = month_end
-                elif week_pos == "third":
-                    # Third week of the month (third Monday to third Friday)
-                    first_monday = self._get_first_working_day_of_month(start_date)
-                    start_date = first_monday + timedelta(days=14)  # Third Monday
-                    end_date = start_date + timedelta(days=4)  # Third Friday
-                    # Ensure dates don't exceed month boundaries
-                    month_end = date(start_date.year, start_date.month, monthrange(start_date.year, start_date.month)[1])
-                    if start_date > month_end:
-                        # Third week doesn't exist in this month, return None
-                        return None
-                    if end_date > month_end:
-                        end_date = month_end
-                elif week_pos == "fourth":
-                    # Fourth week of the month (fourth Monday to fourth Friday)
-                    first_monday = self._get_first_working_day_of_month(start_date)
-                    start_date = first_monday + timedelta(days=21)  # Fourth Monday
-                    end_date = start_date + timedelta(days=4)  # Fourth Friday
-                    # Ensure dates don't exceed month boundaries
-                    month_end = date(start_date.year, start_date.month, monthrange(start_date.year, start_date.month)[1])
-                    if start_date > month_end:
-                        # Fourth week doesn't exist in this month, return None
-                        return None
-                    if end_date > month_end:
-                        end_date = month_end
-                elif week_pos == "last":
-                    # Last week of the month (last Monday to last Friday)
-                    end_date = self._get_last_working_day_of_month(end_date)
-                    start_date = end_date - timedelta(days=4)  # Last Monday
-                elif day_range:
-                    # Specific day range (e.g., "first 5 days")
-                    start_date = date(start_date.year, start_date.month, day_range["start"])
-                    end_date = date(start_date.year, start_date.month, min(day_range["end"], monthrange(start_date.year, start_date.month)[1]))
-                
-                return (start_date, end_date)
-            
-            elif period == "year":
-                if time_ref == "next":
-                    start_date = date(today.year + 1, 1, 1)
-                    end_date = date(today.year + 1, 12, 31)
-                elif time_ref == "this":
-                    start_date = date(today.year, 1, 1)
-                    end_date = date(today.year, 12, 31)
-                else:
-                    return None
-                
-                # Handle week position
-                if week_pos == "first":
-                    # First week of the year (first Monday to first Friday)
-                    start_date = self._get_first_working_day_of_year(start_date.year)
-                    end_date = start_date + timedelta(days=4)
-                elif week_pos == "second":
-                    # Second week of the year (second Monday to second Friday)
-                    first_monday = self._get_first_working_day_of_year(start_date.year)
-                    start_date = first_monday + timedelta(days=7)  # Second Monday
-                    end_date = start_date + timedelta(days=4)  # Second Friday
-                elif week_pos == "third":
-                    # Third week of the year (third Monday to third Friday)
-                    first_monday = self._get_first_working_day_of_year(start_date.year)
-                    start_date = first_monday + timedelta(days=14)  # Third Monday
-                    end_date = start_date + timedelta(days=4)  # Third Friday
-                elif week_pos == "fourth":
-                    # Fourth week of the year (fourth Monday to fourth Friday)
-                    first_monday = self._get_first_working_day_of_year(start_date.year)
-                    start_date = first_monday + timedelta(days=21)  # Fourth Monday
-                    end_date = start_date + timedelta(days=4)  # Fourth Friday
-                elif week_pos == "last":
-                    # Last week of the year (last Monday to last Friday)
-                    end_date = self._get_last_working_day_of_year(end_date.year)
-                    start_date = end_date - timedelta(days=4)
-                
-                return (start_date, end_date)
-            
-            elif period == "week":
-                if time_ref == "next":
-                    # Next week (Monday to Friday)
-                    days_until_monday = (0 - today.weekday()) % 7
-                    if days_until_monday == 0:
-                        days_until_monday = 7
-                    start_date = today + timedelta(days=days_until_monday + 7)
-                    end_date = start_date + timedelta(days=4)
-                elif time_ref == "this":
-                    # This week (Monday to Friday)
-                    days_until_monday = (0 - today.weekday()) % 7
-                    if days_until_monday == 0:
-                        start_date = today
-                    else:
-                        start_date = today + timedelta(days=days_until_monday)
-                    end_date = start_date + timedelta(days=4)
-                else:
-                    return None
-                
-                return (start_date, end_date)
-            
+            return self.intent_classifier.extract_search_window(user_input)
         except Exception as e:
-            print(f"Error calculating period dates: {e}")
-            return None
-        
-        return None
-    
-    def _get_first_working_day_of_month(self, month_start: date) -> date:
-        """Get the first working day (Monday) of a month"""
-        # Find first Monday of the month
-        first_day = month_start
-        days_until_monday = (0 - first_day.weekday()) % 7
-        if days_until_monday == 0 and first_day.weekday() == 0:
-            return first_day
-        elif days_until_monday == 0:
-            days_until_monday = 7
-        return first_day + timedelta(days=days_until_monday)
-    
-    def _get_last_working_day_of_month(self, month_end: date) -> date:
-        """Get the last working day (Friday) of a month"""
-        # Find last Friday of the month
-        last_day = month_end
-        days_since_friday = (last_day.weekday() - 4) % 7
-        if days_since_friday == 0:
-            return last_day
-        return last_day - timedelta(days=days_since_friday)
-    
-    def _get_first_working_day_of_year(self, year: int) -> date:
-        """Get the first working day (Monday) of a year"""
-        year_start = date(year, 1, 1)
-        days_until_monday = (0 - year_start.weekday()) % 7
-        if days_until_monday == 0 and year_start.weekday() == 0:
-            return year_start
-        elif days_until_monday == 0:
-            days_until_monday = 7
-        return year_start + timedelta(days=days_until_monday)
-    
-    def _get_last_working_day_of_year(self, year: int) -> date:
-        """Get the last working day (Friday) of a year"""
-        year_end = date(year, 12, 31)
-        days_since_friday = (year_end.weekday() - 4) % 7
-        if days_since_friday == 0:
-            return year_end
-        return year_end - timedelta(days=days_since_friday)
+            print(f"Search window extraction failed: {e}")
+            return {
+                "start_date": None,
+                "end_date": None
+            }
     
     def _is_working_day(self, check_date: date) -> bool:
         """Check if a date is a working day (Monday-Friday)"""
@@ -1118,48 +1032,6 @@ class BookingConversationAgent:
         
         # Return first N
         return working_dates[:n]
-    
-    def _format_period_description(self, period_info: Dict) -> str:
-        """Format period information into a human-readable description"""
-        period = period_info.get("period")
-        time_ref = period_info.get("time_reference")
-        week_pos = period_info.get("week_position")
-        
-        if not period or not time_ref:
-            return "the specified period"
-        
-        time_ref_str = "next" if time_ref == "next" else "this" if time_ref == "this" else time_ref
-        
-        if period == "month":
-            if week_pos == "first":
-                return f"{time_ref_str} month's first week"
-            elif week_pos == "second":
-                return f"{time_ref_str} month's second week"
-            elif week_pos == "third":
-                return f"{time_ref_str} month's third week"
-            elif week_pos == "fourth":
-                return f"{time_ref_str} month's fourth week"
-            elif week_pos == "last":
-                return f"{time_ref_str} month's last week"
-            else:
-                return f"{time_ref_str} month"
-        elif period == "year":
-            if week_pos == "first":
-                return f"{time_ref_str} year's first week"
-            elif week_pos == "second":
-                return f"{time_ref_str} year's second week"
-            elif week_pos == "third":
-                return f"{time_ref_str} year's third week"
-            elif week_pos == "fourth":
-                return f"{time_ref_str} year's fourth week"
-            elif week_pos == "last":
-                return f"{time_ref_str} year's last week"
-            else:
-                return f"{time_ref_str} year"
-        elif period == "week":
-            return f"{time_ref_str} week"
-        
-        return "the specified period"
     
     def _handle_period_date_selection(self, user_input: str, booking_context: Dict) -> Dict:
         """Handle when user selects a specific date from period suggestions"""

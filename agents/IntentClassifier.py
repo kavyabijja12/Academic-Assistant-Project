@@ -9,6 +9,7 @@ import os
 import json
 import re
 from typing import Dict, Optional
+from datetime import datetime, date, timedelta
 
 # Add parent directory to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -422,6 +423,108 @@ Respond with ONLY valid JSON in this exact format:
                 "week_position": None,
                 "day_range": None,
                 "specific_date": None
+            }
+    
+    def extract_search_window(self, user_input: str) -> Dict:
+        """
+        Extract search window (start_date, end_date) from user input using LLM
+        Used for vague/period inputs to determine date range for finding appointments
+        
+        Args:
+            user_input: User's date/period input
+            
+        Returns:
+            Dictionary with:
+            - start_date: "YYYY-MM-DD" or null
+            - end_date: "YYYY-MM-DD" or null
+        """
+        today = date.today()
+        today_str = today.strftime("%Y-%m-%d")
+        max_date = today + timedelta(days=30)
+        max_date_str = max_date.strftime("%Y-%m-%d")
+        
+        prompt = f"""Given this user input about when they want an appointment, determine a reasonable date range (search window) to find available appointments.
+
+User input: "{user_input}"
+Today's date: {today_str}
+Maximum allowed date: {max_date_str} (30 days from today)
+
+Determine a reasonable start_date and end_date for searching appointments based on the user's intent.
+- If user says "next month" or "next month after 1st week" → search window should cover next month
+- If user says "this month" → search window should be from today to end of this month
+- If user says "next week" → search window should cover next week
+- If user says "sometime soon" or vague → use next 30 days
+- IMPORTANT: If the user asks for something beyond 30 days (like "next year", "in 2 months", dates far in future), return null for both dates
+- Both dates must be within 30 days from today ({max_date_str})
+
+Return ONLY valid JSON, no other text:
+{{
+    "start_date": "YYYY-MM-DD" or null,
+    "end_date": "YYYY-MM-DD" or null
+}}
+
+Examples:
+- "next month" -> {{"start_date": "2025-02-01", "end_date": "2025-02-28"}}
+- "next month after 1st week" -> {{"start_date": "2025-02-10", "end_date": "2025-02-28"}}
+- "this month" -> {{"start_date": "{today_str}", "end_date": "2025-01-31"}}
+- "next week" -> {{"start_date": "2025-01-13", "end_date": "2025-01-17"}}
+- "sometime soon" -> {{"start_date": "{today_str}", "end_date": "{max_date_str}"}}
+- "next year" -> {{"start_date": null, "end_date": null}}
+- "next year first week" -> {{"start_date": null, "end_date": null}}
+"""
+        
+        try:
+            response = self.model.generate_content(prompt)
+            result_text = response.text.strip()
+            
+            # Try to extract JSON from response
+            json_match = re.search(r'\{[^{}]*\}', result_text, re.DOTALL)
+            if json_match:
+                json_str = json_match.group(0)
+            else:
+                json_block = re.search(r'```(?:json)?\s*(\{.*?\})\s*```', result_text, re.DOTALL)
+                if json_block:
+                    json_str = json_block.group(1)
+                else:
+                    json_str = result_text
+            
+            # Parse JSON
+            window_info = json.loads(json_str)
+            
+            # Validate and clean up
+            start_date_str = window_info.get("start_date")
+            end_date_str = window_info.get("end_date")
+            
+            # Validate dates
+            start_date = None
+            end_date = None
+            
+            if start_date_str and start_date_str.lower() != "null":
+                try:
+                    parsed_start = datetime.strptime(start_date_str, "%Y-%m-%d").date()
+                    if parsed_start >= today and parsed_start <= max_date:
+                        start_date = parsed_start
+                except ValueError:
+                    pass
+            
+            if end_date_str and end_date_str.lower() != "null":
+                try:
+                    parsed_end = datetime.strptime(end_date_str, "%Y-%m-%d").date()
+                    if parsed_end >= today and parsed_end <= max_date:
+                        end_date = parsed_end
+                except ValueError:
+                    pass
+            
+            return {
+                "start_date": start_date,
+                "end_date": end_date
+            }
+            
+        except (json.JSONDecodeError, KeyError, Exception) as e:
+            # If parsing fails, return None (will use default fallback)
+            return {
+                "start_date": None,
+                "end_date": None
             }
 
 
