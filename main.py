@@ -516,10 +516,15 @@ def should_show_message(response_text, booking_ctx):
     has_time_list = ("Here are the available times" in response_text or "Here are the available slots" in response_text or "available time slots" in response_text or (len(response_text) > 150 and "•" in response_text and ("PM" in response_text or "AM" in response_text)))
     has_date_list = ("Here are some alternative dates" in response_text or "alternative dates with available slots" in response_text)
     has_program_question = ("Are you an undergraduate" in response_text or "undergraduate (BS) or graduate (MS)" in response_text)
+    # Check if this is a confirmation message (thank you message)
+    is_confirmation = "thank you" in response_text.lower() or "Thank you" in response_text
     state = booking_ctx.get("state")
     if (state == "need_program" and has_program_question) or (state == "need_advisor" and booking_ctx.get("available_advisors") and has_advisor_list) or (state == "need_time" and booking_ctx.get("available_slots") and has_time_list) or (state == "need_date" and booking_ctx.get("suggested_dates") and has_date_list):
         return False
     if (state == "need_advisor" and booking_ctx.get("available_advisors")) or (state == "need_time" and booking_ctx.get("available_slots")) or (state == "need_date" and booking_ctx.get("suggested_dates")) or (state == "need_program"):
+        # Always show confirmation messages even if longer than 100 characters
+        if is_confirmation:
+            return True
         return len(response_text) < 100
     return True
 
@@ -606,7 +611,7 @@ def render_sidebar(rag_system):
 def render_program_selection(controller, booking_ctx):
     """Render program level selection buttons (Undergraduate/BS vs Graduate/MS)"""
     st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown("### 🎓 Select Your Program Level")
+    st.markdown("### Select Your Program Level")
     st.markdown("---")
     cols = st.columns(2)
     
@@ -673,7 +678,7 @@ def render_program_selection(controller, booking_ctx):
 
 def render_advisor_selection(advisors, controller, booking_ctx):
     st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown("### 👤 Select an Advisor")
+    st.markdown("### Select an Advisor")
     st.markdown("---")
     cols = st.columns(2)
     for i, advisor in enumerate(advisors[:6]):
@@ -716,9 +721,9 @@ def render_date_selection(suggested_dates, controller, booking_ctx):
     is_period_selection = booking_ctx.get("date_selection_mode") == "period"
     
     if is_period_selection:
-        st.markdown("### 📅 Select a Date from the Period")
+        st.markdown("### Select a Date from the Period")
     else:
-        st.markdown("### 📅 Select an Alternative Date")
+        st.markdown("### Select an Alternative Date")
     st.markdown("---")
     num_cols = min(3, len(suggested_dates))
     cols = st.columns(num_cols if num_cols > 0 else 1)
@@ -769,7 +774,7 @@ def render_time_slots(slots, controller, booking_ctx):
     for date_obj in sorted(slots_by_date.keys()):
         date_slots = sorted(slots_by_date[date_obj])
         date_str = date_obj.strftime("%A, %B %d, %Y")
-        st.markdown(f"#### 📅 {date_str}")
+        st.markdown(f"#### {date_str}")
         st.markdown("---")
         cols = st.columns(4)
         for i, slot in enumerate(date_slots[:16]):
@@ -1196,7 +1201,7 @@ def process_user_input(input_text, controller, rag_system):
 
 
 def main():
-    st.set_page_config(page_title="IFT Academic Assistant", page_icon="🎓", layout="wide", initial_sidebar_state="expanded")
+    st.set_page_config(page_title="IFT Academic Assistant",  layout="wide", initial_sidebar_state="expanded")
     st.markdown(get_custom_styles(), unsafe_allow_html=True)
 
     init_chat_history_db()
@@ -1228,7 +1233,7 @@ def main():
     # Header and Book button
     col_title, col_book = st.columns([3, 1])
     with col_title:
-        st.markdown("""<div style="margin-bottom:10px;"><h1 style="margin:0;color:#000;">🎓 IFT Academic Assistant</h1><p style="color:#666;margin-top:5px;font-size:16px;">Ask questions about IFT program details, courses, and academic tasks.</p></div>""", unsafe_allow_html=True)
+        st.markdown("""<div style="margin-bottom:10px;"><h1 style="margin:0;color:#000;">IFT Academic Assistant</h1><p style="color:#666;margin-top:5px;font-size:16px;">Ask questions about IFT program details, courses, and academic tasks.</p></div>""", unsafe_allow_html=True)
     with col_book:
         st.markdown("<br>", unsafe_allow_html=True)
         if st.button("Book Appointment", type="primary", use_container_width=True):

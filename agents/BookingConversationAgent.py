@@ -149,9 +149,11 @@ class BookingConversationAgent:
         # Check for undergraduate/BS
         if any(term in user_lower for term in ["undergraduate", "undergrad", "bachelor", "bs", "b.s"]):
             program = "undergraduate"
+            program_display = "Undergraduate (BS)"
         # Check for graduate/MS
         elif any(term in user_lower for term in ["graduate", "master", "grad", "ms", "m.s", "masters"]):
             program = "graduate"
+            program_display = "Graduate (MS)"
         else:
             return {
                 "success": False,
@@ -166,10 +168,14 @@ class BookingConversationAgent:
         booking_context["available_advisors"] = advisors
         booking_context["state"] = self.STATE_NEED_ADVISOR
         
+        # Create a friendly confirmation message
+        confirmation_message = f"Thank you for selecting **{program_display}**! I've noted your program level.\n\n"
+        confirmation_message += "Now, please select an advisor from the options below:"
+        
         return {
             "success": True,
             "booking_context": booking_context,
-            "message": "Please select an advisor from the options below:",
+            "message": confirmation_message,
             "state": self.STATE_NEED_ADVISOR,
             "action": "show_advisors"
         }
