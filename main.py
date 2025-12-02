@@ -516,16 +516,28 @@ def should_show_message(response_text, booking_ctx):
     has_time_list = ("Here are the available times" in response_text or "Here are the available slots" in response_text or "available time slots" in response_text or (len(response_text) > 150 and "•" in response_text and ("PM" in response_text or "AM" in response_text)))
     has_date_list = ("Here are some alternative dates" in response_text or "alternative dates with available slots" in response_text)
     has_program_question = ("Are you an undergraduate" in response_text or "undergraduate (BS) or graduate (MS)" in response_text)
-    # Check if this is a confirmation message (thank you message)
-    is_confirmation = "thank you" in response_text.lower() or "Thank you" in response_text
+    
+    # Check if this is a confirmation message (program, advisor, time, or date confirmation)
+    is_program_confirmation = "thank you" in response_text.lower() and ("selecting" in response_text.lower() or "noted your program level" in response_text.lower())
+    is_advisor_confirmation = "Great! I've selected" in response_text or ("I've selected" in response_text and "advisor" in response_text.lower())
+    is_time_confirmation = "Excellent! I've selected" in response_text and ("AM" in response_text or "PM" in response_text)
+    is_date_confirmation = "Perfect! Here are the available times" in response_text
+    is_confirmation = is_program_confirmation or is_advisor_confirmation or is_time_confirmation or is_date_confirmation
+    
     state = booking_ctx.get("state")
+    
+    # Never hide confirmation messages - they provide important context
+    if is_confirmation:
+        return True
+    
+    # Hide messages that are replaced by UI elements
     if (state == "need_program" and has_program_question) or (state == "need_advisor" and booking_ctx.get("available_advisors") and has_advisor_list) or (state == "need_time" and booking_ctx.get("available_slots") and has_time_list) or (state == "need_date" and booking_ctx.get("suggested_dates") and has_date_list):
         return False
+    
+    # For states with UI elements, only show short messages (but confirmations are already handled above)
     if (state == "need_advisor" and booking_ctx.get("available_advisors")) or (state == "need_time" and booking_ctx.get("available_slots")) or (state == "need_date" and booking_ctx.get("suggested_dates")) or (state == "need_program"):
-        # Always show confirmation messages even if longer than 100 characters
-        if is_confirmation:
-            return True
         return len(response_text) < 100
+    
     return True
 
 
