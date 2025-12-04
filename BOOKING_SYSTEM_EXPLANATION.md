@@ -740,3 +740,6 @@ Action: Use get_available_slots to find slots, then check availability
 
 The LangChain approach transforms your booking system from a **rigid state machine** into an **intelligent agent** that can reason about user requests and take appropriate actions autonomously.
 
+
+
+
