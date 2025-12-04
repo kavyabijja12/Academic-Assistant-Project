@@ -300,14 +300,6 @@ Run the application locally and test:
 - Booking flow
 - Admin dashboard
 
-## License
-
-This project is developed for ASU Polytechnic School - Information Technology Program.
-
-## Support
-
-For issues or questions, please contact the development team or refer to the detailed documentation in the project's markdown files.
-
 ---
 
 **ASU Polytechnic School - Information Technology Program**  
