@@ -4,7 +4,7 @@ An intelligent academic assistant application for the Arizona State University I
 
 ## Features
 
-### 📚 Question & Answer System
+### Question & Answer System
 - **RAG-powered chatbot** using Retrieval-Augmented Generation
 - Answers questions about:
   - Course information and descriptions
@@ -14,7 +14,7 @@ An intelligent academic assistant application for the Arizona State University I
 - **Hybrid retrieval** combining semantic (FAISS) and keyword (BM25) search
 - Response caching for improved performance
 
-### 📅 Appointment Booking System
+### Appointment Booking System
 - Interactive booking workflow for student-advisor appointments
 - Features:
   - Program-level filtering (Undergraduate/Graduate)
@@ -24,7 +24,7 @@ An intelligent academic assistant application for the Arizona State University I
   - Email confirmations
 - State machine-based conversational flow
 
-### 🔐 Authentication & Authorization
+### Authentication & Authorization
 - Student authentication with ASU ID
 - Admin dashboard access
 - Session management
@@ -130,7 +130,7 @@ Default credentials:
 - Email: `admin@asu.edu`
 - Password: `admin123`
 
-⚠️ **Change the default password after first login!**
+**Change the default password after first login!**
 
 ## Running the Application
 
