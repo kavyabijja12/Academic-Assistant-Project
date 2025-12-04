@@ -30,7 +30,7 @@ An intelligent academic assistant application for the Arizona State University I
 - Session management
 - Secure password hashing
 
-### 📊 Admin Dashboard
+### Admin Dashboard
 - Real-time analytics and statistics
 - Message categorization (booking vs questions)
 - Question subcategory breakdown
